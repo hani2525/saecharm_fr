@@ -1,0 +1,85 @@
+// @import "styles/variables/typography';
+
+// common.scss로 이동
+// css 순서 plugin 사용
+body {
+  background-color: #f6f1e9;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 30vw;
+  margin: 10vw auto;
+  padding: 5vw;
+  gap: 4vh;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px,
+    rgba(0, 0, 0, 0.1) 0px 2px 4px 0px,
+    rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+}
+
+.logoWrapper {
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+  cursor: pointer;
+}
+
+.title {
+  width: 20vw;
+  height: 5vw;
+}
+
+.logo {
+  width: 5vw;
+}
+
+.inputLoginBox {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 22vw;
+}
+
+.inputWrapper {
+  width: 22vw;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2.5vh;
+}
+
+.input {
+  width: 100%;
+  padding: 15px 25px;
+  border: 3px solid #f6f1e9;
+  border-radius: 20px;
+
+  &:focus {
+    border: 3px solid #a9907e;
+  }
+  &::placeholder {
+    color: #b2b2b2;
+  }
+}
+
+.loginBtn {
+  width: 80%;
+  padding: 20px 30px;
+  border-radius: 30px;
+  margin-top: 40px;
+  cursor: pointer;
+  border: 3px solid #f6f1e9;
+  text-align: center;
+  font-size: 13px;
+  color: #a9907e;
+  &:hover {
+    border: 3px solid #a9907e;
+    background-color: #a9907e;
+    font-weight: bold;
+    color: white;
+  }
+}

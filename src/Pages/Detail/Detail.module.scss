@@ -1,0 +1,179 @@
+.container {
+  margin: 20px;
+}
+
+.title {
+  font-size: 18px;
+  letter-spacing: 1.5px;
+  color: #c0a080;
+}
+
+.detailInfo {
+  background-color: white;
+  display: flex;
+  position: relative;
+  width: 70%;
+  flex-direction: column;
+  margin: 10px auto;
+  padding: 15px 30px;
+  border-radius: 10px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.mainInfo {
+  padding: 20px 0;
+  border-bottom: 1px solid #e1d7c6;
+  display: flex;
+  gap: 50px;
+}
+
+.personalInfo {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  gap: 20px;
+
+  .value {
+    margin-top: 7px;
+    width: 70%;
+  }
+}
+
+.editBtn {
+  background-color: #f9f5eb;
+  border-radius: 10px;
+  padding: 10px 15px;
+  position: absolute;
+  right: 15px;
+  color: #665a48;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #e8d2a6;
+  }
+}
+
+.title {
+  width: 100%;
+  padding: 5px;
+  color: #8d7b68;
+}
+
+.valueName {
+  color: #8d7b68;
+}
+
+.value {
+  padding: 7px 10px;
+  border: 3px solid #f9f5eb;
+  border-radius: 5px;
+  margin-top: 7px;
+  color: #7f8487;
+}
+
+.logo {
+  width: 150px;
+  height: 200px;
+  cursor: pointer;
+}
+
+.dateInfo {
+  display: flex;
+  border-bottom: 1px solid #e1d7c6;
+  padding: 20px 5px;
+  gap: 10px;
+  .infoBox {
+    width: 33%;
+  }
+}
+
+.radioInfo {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: #8d7b68;
+}
+
+.radioBox {
+  display: flex;
+  gap: 30px;
+  label {
+    color: #7f8487;
+    cursor: pointer;
+  }
+  input {
+    accent-color: #665a48;
+  }
+}
+
+.additionalInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 5px;
+  border-bottom: 1px solid #e1d7c6;
+  .infoBox {
+    width: 33%;
+  }
+}
+
+.noteBox {
+  padding: 20px 5px;
+  border-bottom: 1px solid #e1d7c6;
+}
+
+.memoBox {
+  padding: 20px 5px;
+}
+
+.memoCard {
+  margin-top: 10px;
+  background-color: #e4dccf;
+  padding: 15px;
+  border-radius: 15px;
+  color: #7f8487;
+}
+
+.writerInfo {
+  display: flex;
+  align-items: center;
+  color: #8b7e74;
+  gap: 10px;
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+.content {
+  font-size: 15px;
+}
+
+.memoInput {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.input {
+  width: 90%;
+  padding: 20px 10px;
+  border: 2px solid #e8d2a6;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.saveBtn {
+  background-color: #f9f5eb;
+  padding: 15px 5px;
+  border-radius: 20px;
+  width: 10%;
+  text-align: center;
+  font-size: 14px;
+  color: #665a48;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #e8d2a6;
+  }
+}

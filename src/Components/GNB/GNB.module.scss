@@ -1,0 +1,61 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+}
+
+.logoMenuBox {
+  display: flex;
+  align-items: center;
+  gap: 150px;
+}
+
+.logo {
+  width: 4vw;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.menuWrapper {
+  display: flex;
+  gap: 80px;
+}
+
+.selectedMenu {
+  color: #8d7b68;
+  font-size: 16px;
+  letter-spacing: 1.2px;
+  font-weight: bold;
+}
+
+.menu {
+  color: #d0b8a8;
+  font-size: 16px;
+  letter-spacing: 1.2px;
+
+  &:hover {
+    font-weight: bold;
+  }
+}
+
+.userBox {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-right: 30px;
+}
+
+.userInfo {
+  color: #7f8487;
+}
+
+.logoutButton {
+  background-color: #d0b8a8;
+  color: #8d7b68;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}

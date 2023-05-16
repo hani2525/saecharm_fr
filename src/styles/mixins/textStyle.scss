@@ -1,0 +1,181 @@
+@import 'styles/mediaQuery';
+@import 'styles/variables/typography';
+
+@mixin textStyleTitle {
+  font-size: $fontSizeTitle;
+  font-weight: 900;
+  line-height: $lineHeightTitle;
+
+  @media #{$underTablet} {
+    font-size: $fontSizeTitleMobile;
+    line-height: $lineHeightTitleMobile;
+  }
+}
+
+@mixin textStyleDescription {
+  font-size: $fontSizeDescription;
+  font-weight: 400;
+  line-height: $lineHeightDescription;
+}
+
+@mixin textStyleCaption {
+  font-size: $fontSizeCaption;
+  font-weight: 400;
+  line-height: $lineHeightCaption;
+
+  @media #{$underTablet} {
+    font-size: $fontSizeCaptionMobile;
+    line-height: $lineHeightCaptionMobile;
+  }
+}
+
+@mixin textStyleFootnote {
+  font-size: $fontSizeFootnote;
+  font-weight: 400;
+  line-height: $lineHeightFootnote;
+
+  @media #{$underTablet} {
+    font-size: $fontSizeFootnoteMobile;
+    line-height: $lineHeightFootnoteMobile;
+  }
+}
+
+@mixin textStyleBase {
+  font-size: $fontSizeBase;
+  font-weight: 400;
+  line-height: $lineHeightBase;
+
+  @media #{$underTablet} {
+    font-size: $fontSizeBaseMobile;
+    line-height: $lineHeightBaseMobile;
+  }
+}
+
+@mixin textStyleLabelSm {
+  font-size: $fontSizeLabelSm;
+  font-weight: 400;
+  line-height: $lineHeightLabelSm;
+}
+
+@mixin textStyleLabelMd {
+  font-size: $fontSizeLabelMd;
+  font-weight: 700;
+  line-height: $lineHeightLabelMd;
+
+  @media #{$underTablet} {
+    font-size: $fontSizeLabelMdMobile;
+    line-height: $lineHeightLabelMdMobile;
+  }
+}
+
+@mixin textStyleH1 {
+  font-size: $fontSizeH1;
+  font-weight: 700;
+  line-height: $lineHeightH1;
+
+  @media #{$underTablet} {
+    font-size: $fontSizeH1Mobile;
+    line-height: $lineHeightH1Mobile;
+  }
+}
+
+@mixin textStyleH2 {
+  font-size: $fontSizeH2;
+  font-weight: 700;
+  line-height: $lineHeightH2;
+
+  @media #{$underTablet} {
+    font-size: $fontSizeH2Mobile;
+    line-height: $lineHeightH2Mobile;
+  }
+}
+
+@mixin textStyleH3 {
+  font-size: $fontSizeH3;
+  font-weight: 700;
+  line-height: $lineHeightH3;
+
+  @media #{$underTablet} {
+    font-size: $fontSizeH3Mobile;
+    line-height: $lineHeightH3Mobile;
+  }
+}
+
+@mixin textStyleH4 {
+  font-size: $fontSizeH4;
+  font-weight: 400;
+  line-height: $lineHeightH4;
+
+  @media #{$underTablet} {
+    font-size: $fontSizeH4Mobile;
+    line-height: $lineHeightH4Mobile;
+  }
+}
+
+@mixin textStyleH5 {
+  font-size: $fontSizeH5;
+  font-weight: 700;
+  line-height: $lineHeightH5;
+
+  @media #{$underTablet} {
+    font-size: $fontSizeH5Mobile;
+    line-height: $lineHeightH5Mobile;
+  }
+}
+
+@mixin textStyleHeadline {
+  font-size: $fontSizeHeadline;
+  font-weight: 400;
+  line-height: $lineHeightHeadline;
+
+  @media #{$underTablet} {
+    font-size: $fontSizeHeadlineMobile;
+    line-height: $lineHeightHeadlineMobile;
+  }
+}
+
+@mixin textStyle($size: base, $color: false) {
+  @if $size == description {
+    @include textStyleDescription;
+  }
+  @if $size == base {
+    @include textStyleBase;
+  }
+  @if $size == footnote {
+    @include textStyleFootnote;
+  }
+  @if $size == caption {
+    @include textStyleCaption;
+  }
+  @if $size == labelSm {
+    @include textStyleLabelSm;
+  }
+  @if $size == labelMd {
+    @include textStyleLabelMd;
+  }
+  @if $size == headline {
+    @include textStyleHeadline;
+  }
+  @if $size == h1 {
+    @include textStyleH1;
+  }
+  @if $size == h2 {
+    @include textStyleH2;
+  }
+  @if $size == h3 {
+    @include textStyleH3;
+  }
+  @if $size == h4 {
+    @include textStyleH4;
+  }
+  @if $size == h5 {
+    @include textStyleH5;
+  }
+  @if $size == title {
+    @include textStyleTitle;
+  }
+
+  @if type-of($color) == color {
+    color: $color;
+  }
+}

@@ -1,0 +1,12 @@
+$breakpointMobile: 526;
+$breakpoint: 1024;
+$mobile: 'screen and (max-width: #{$breakpoint - 1}px)';
+
+/* tablet은 tablet 특수용 (526 ~ 1023) */
+$tablet: 'screen and (min-width: #{$breakpointMobile}px) and (max-width: #{$breakpoint - 1}px)';
+$desktop: 'screen and (min-width: #{$breakpoint}px)';
+$greaterThanTablet: 'screen and (min-width: #{$breakpointMobile}px)';
+$onlyMobile: 'screen and (max-width: #{$breakpointMobile - 1}px)';
+
+/* underTablet은 font를 위한 breakpoint */
+$underTablet: 'screen and (max-width: #{$breakpoint - 1}px)';
