@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import css from "./Login.module.scss";
 import logo from "./new_charm_logo.png";
 import title from "./sae_charm.png";
@@ -7,8 +7,55 @@ import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
+  const [userInfo, setUserInfo] = useState({
+    account: null,
+    password: null,
+  });
 
-  const goToMain = () => navigate("/main");
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    setUserInfo((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleClick = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      handleLogin();
+    }
+  };
+
+  const handleLogin = () => {
+    if (!userInfo.account || !userInfo.password) {
+      alert("아이디 또는 비밀번호를 입력해주세요.");
+      return;
+    }
+
+    fetch(`http://localhost:3306/admin/signin`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        account: userInfo.account,
+        password: userInfo.password,
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.message === "LOGIN_SUCCESS") {
+          localStorage.setItem("access_token", res.accessToken);
+          localStorage.setItem("name", res.name);
+          localStorage.setItem("id", res.id);
+          navigate("/list/main");
+        } else {
+          alert("아이디 또는 비밀번호를 확인해주세요.");
+        }
+      });
+  };
 
   return (
     <div className={css.container}>
@@ -21,15 +68,20 @@ const Login = () => {
           <input
             type="text"
             className={cn(css.idInput, css.input)}
+            name="account"
             placeholder="아이디 입력"
+            onChange={handleChange}
           />
           <input
-            type="text"
+            type="password"
+            name="password"
             className={cn(css.pwInput, css.input)}
             placeholder="비밀번호 입력"
+            onChange={handleChange}
+            onKeyDown={(e) => handleClick(e)}
           />
         </div>
-        <div className={css.loginBtn} onClick={goToMain}>
+        <div className={css.loginBtn} onClick={handleLogin}>
           로그인
         </div>
       </div>

@@ -11,9 +11,8 @@ interface Props {
 
 const Card = ({ id, name, responsibility }: Props) => {
   const navigate = useNavigate();
-
   const goDetail = () => {
-    navigate("/detail");
+    navigate(`/detail/${id}`);
   };
   return (
     <div className={css.container} onClick={goDetail}>

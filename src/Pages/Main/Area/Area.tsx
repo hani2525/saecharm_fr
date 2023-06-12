@@ -6,26 +6,26 @@ import Card from "./Card";
 interface Props {
   list: List[];
   step: string;
-  key: number;
 }
 
-const Area = ({ list, step, key }: Props) => {
+const Area = ({ list, step }: Props) => {
   return (
     <div className={css.container}>
       <div className={css.step}>
-        {step} ({list.length}명)
+        {step} ({list ? list.length : 0}명)
       </div>
-      {list.map(({ id, name, responsibility, firstDate }) => {
-        return (
-          <Card
-            key={id}
-            id={id}
-            name={name}
-            responsibility={responsibility}
-            firstDate={firstDate}
-          />
-        );
-      })}
+      {list &&
+        list.map(({ id, name, responsibility, firstDate }) => {
+          return (
+            <Card
+              key={id}
+              id={id}
+              name={name}
+              responsibility={responsibility}
+              firstDate={firstDate}
+            />
+          );
+        })}
     </div>
   );
 };
