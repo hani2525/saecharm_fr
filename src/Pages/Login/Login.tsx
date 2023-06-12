@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import css from "./Login.module.scss";
 import logo from "./new_charm_logo.png";
 import title from "./sae_charm.png";
@@ -7,6 +7,14 @@ import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
+  const isLogged = localStorage.getItem("access_token");
+
+  useEffect(() => {
+    if (isLogged) {
+      navigate("/list/main");
+    }
+  }, []);
+
   const [userInfo, setUserInfo] = useState({
     account: null,
     password: null,

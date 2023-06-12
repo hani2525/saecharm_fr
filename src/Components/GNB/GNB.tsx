@@ -11,6 +11,7 @@ const GNB = () => {
   const goLogOut = () => {
     localStorage.removeItem("access_token");
     localStorage.removeItem("name");
+    localStorage.removeItem("id");
     window.location.reload();
   };
 
