@@ -4,6 +4,7 @@ import css from "./Add.module.scss";
 import { cn } from "utils";
 import DatePick from "Components/DatePick";
 import { useNavigate } from "react-router-dom";
+import BASE_URL from "config";
 
 const Add = () => {
   const navigate = useNavigate();
@@ -50,7 +51,7 @@ const Add = () => {
 
   const handleAddBtn = () => {
     //TODO: 내용 중에 빈칸이 있으면 알림 뜨기
-    fetch(`http://localhost:3306/newbies/detail`, {
+    fetch(`${BASE_URL}/newbies/detail`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -1,6 +1,7 @@
 import DatePick from "Components/DatePick";
 import React, { useEffect, useState } from "react";
 import { cn } from "utils";
+import BASE_URL from "config";
 import css from "./AttendanceTable.module.scss";
 
 type AttendanceTableProps = {
@@ -11,13 +12,13 @@ const AttendanceTable = ({ newbieId }: AttendanceTableProps) => {
   const [attendanceData, setAttendanceData] = useState<any>();
 
   useEffect(() => {
-    fetch(`http://localhost:3306/attendance/info/${newbieId}`)
+    fetch(`${BASE_URL}/attendance/info/${newbieId}`)
       .then((res) => res.json())
       .then((data) => setAttendanceData(data.data[0]));
   }, []);
 
   const handleDate = (name: string, date: Date) => {
-    fetch(`http://localhost:3306/attendance`, {
+    fetch(`${BASE_URL}/attendance`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

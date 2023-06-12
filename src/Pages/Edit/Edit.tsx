@@ -4,6 +4,7 @@ import css from "./Edit.module.scss";
 import { cn } from "utils";
 import DatePick from "Components/DatePick";
 import { useLocation, useNavigate } from "react-router-dom";
+import BASE_URL from "config";
 
 const Edit = () => {
   //TODO: Detail 컴포넌트랑 같이 관리
@@ -39,7 +40,7 @@ const Edit = () => {
     console.log(newbieInfo);
     newbieInfo.id = state.id;
     newbieInfo.phone_number = newbieInfo.phoneNumber;
-    fetch(`http://localhost:3306/newbies/additional-info`, {
+    fetch(`${BASE_URL}/newbies/additional-info`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

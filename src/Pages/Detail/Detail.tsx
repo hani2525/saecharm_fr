@@ -4,6 +4,7 @@ import css from "./Detail.module.scss";
 import { cn } from "utils";
 import { useNavigate, useParams } from "react-router-dom";
 import AttendanceTable from "./AttendanceTable";
+import BASE_URL from "config";
 
 const Detail = () => {
   const navigate = useNavigate();
@@ -16,13 +17,13 @@ const Detail = () => {
   const [memoData, setMemoData] = useState<any[]>();
 
   useEffect(() => {
-    fetch(`http://localhost:3306/newbies/detail/${newbieId}`)
+    fetch(`${BASE_URL}/newbies/detail/${newbieId}`)
       .then((res) => res.json())
       .then((data) => setNewbieData(data.data[0]));
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:3306/memos/${newbieId}`)
+    fetch(`${BASE_URL}/memos/${newbieId}`)
       .then((res) => res.json())
       .then((data) => setMemoData(data.data));
   }, []);
@@ -46,7 +47,7 @@ const Detail = () => {
   const handleMemoBtn = () => {
     const memoValue = memoInput.current!.value;
 
-    fetch(`http://localhost:3306/memos/new-memo`, {
+    fetch(`${BASE_URL}/memos/new-memo`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

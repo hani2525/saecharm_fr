@@ -4,6 +4,7 @@ import logo from "./new_charm_logo.png";
 import title from "./sae_charm.png";
 import { cn } from "utils";
 import { useNavigate } from "react-router-dom";
+import BASE_URL from "config";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ const Login = () => {
       return;
     }
 
-    fetch(`http://localhost:3306/admin/signin`, {
+    fetch(`${BASE_URL}/admin/signin`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

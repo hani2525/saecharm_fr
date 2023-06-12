@@ -1,4 +1,5 @@
 import GNB from "Components/GNB";
+import BASE_URL from "config";
 import React, { useEffect, useState } from "react";
 import Area from "./Area";
 import { List } from "./Area/type";
@@ -8,7 +9,7 @@ const Main = () => {
   const [newbiesData, setNewbiesData] = useState<any[]>();
 
   useEffect(() => {
-    fetch(`http://localhost:3306/newbies`)
+    fetch(`${BASE_URL}/newbies`)
       .then((res) => res.json())
       .then((data) => setNewbiesData(data.data));
   }, []);
