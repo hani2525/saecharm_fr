@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import BASE_URL from "config";
 
 const Login = () => {
+  console.log("login", BASE_URL);
   const navigate = useNavigate();
   const isLogged = localStorage.getItem("access_token");
 
@@ -42,7 +43,6 @@ const Login = () => {
       alert("아이디 또는 비밀번호를 입력해주세요.");
       return;
     }
-
     fetch(`${BASE_URL}/admin/signin`, {
       method: "POST",
       headers: {
