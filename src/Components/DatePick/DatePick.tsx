@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { DatePicker } from "react-rainbow-components";
 
 type DatePickProps = {

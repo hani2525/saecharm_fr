@@ -1,5 +1,5 @@
 import GNB from "Components/GNB";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import css from "./Edit.module.scss";
 import { cn } from "utils";
 import DatePick from "Components/DatePick";
