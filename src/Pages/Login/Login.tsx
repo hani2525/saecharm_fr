@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 import BASE_URL from "config";
 
 const Login = () => {
-  console.log("login", BASE_URL);
   const navigate = useNavigate();
   const isLogged = localStorage.getItem("access_token");
 
