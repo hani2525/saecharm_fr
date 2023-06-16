@@ -42,19 +42,16 @@ const Login = () => {
       alert("아이디 또는 비밀번호를 입력해주세요.");
       return;
     }
-    fetch(
-      `$http://ec2-3-36-123-251.ap-northeast-2.compute.amazonaws.com:3000/admin/signin`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          account: userInfo.account,
-          password: userInfo.password,
-        }),
-      }
-    )
+    fetch(`${BASE_URL}/admin/signin`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        account: userInfo.account,
+        password: userInfo.password,
+      }),
+    })
       .then((res) => res.json())
       .then((res) => {
         if (res.message === "LOGIN_SUCCESS") {
