@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { DatePicker } from "react-rainbow-components";
 
 type DatePickProps = {
   name: string;
-  selectedDate?: Date;
+  selectedDate?: string;
   onHandleDate: (name: string, date: Date) => void;
   disabled?: boolean;
 };
@@ -16,17 +16,18 @@ const DatePick = ({
   disabled,
 }: DatePickProps) => {
   const initialState = {
-    date: selectedDate ? new Date(selectedDate) : new Date(),
+    date: selectedDate ? selectedDate : new Date(),
     locale: { name: "ko-KO" },
   };
-
-  console.log(disabled, "disabled", name);
 
   const containerStyles = {
     maxWidth: 500,
   };
+  const [date, setDate] = useState<any>(new Date());
 
-  const [date, setDate] = useState(initialState.date);
+  useEffect(() => {
+    setDate(selectedDate || new Date());
+  }, [selectedDate]);
 
   const handlePickDate = (value: any) => {
     if (window.confirm("날짜를 선택하시겠습니까?")) {

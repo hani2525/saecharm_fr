@@ -18,7 +18,7 @@ const Main = () => {
     <>
       <GNB />
       <div className={css.container}>
-        <div className={css.title}>📋 새가족 현황 (12명)</div>
+        <div className={css.title}>📋 새가족 현황</div>
         <div className={css.boardWrapper}>
           {newbiesData &&
             newbiesData.map(

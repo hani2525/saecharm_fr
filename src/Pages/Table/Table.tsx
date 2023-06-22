@@ -6,11 +6,6 @@ import Village from "./Village";
 
 const Table = () => {
   //전체 목장 목록 가져오기
-  useEffect(() => {
-    fetch(`${BASE_URL}/members`)
-      .then((res) => res.json())
-      .then((data) => console.log(data));
-  }, []);
 
   return (
     <>

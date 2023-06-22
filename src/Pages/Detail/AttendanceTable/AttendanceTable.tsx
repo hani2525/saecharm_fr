@@ -10,15 +10,14 @@ type AttendanceTableProps = {
 
 const AttendanceTable = ({ newbieId }: AttendanceTableProps) => {
   const [attendanceData, setAttendanceData] = useState<any>();
-
   useEffect(() => {
     fetch(`${BASE_URL}/attendance/info/${newbieId}`)
       .then((res) => res.json())
       .then((data) => setAttendanceData(data.data[0]));
   }, []);
 
-  const handleDate = (name: string, date: Date) => {
-    fetch(`${BASE_URL}/attendance`, {
+  const handleDate = async (name: string, date: Date) => {
+    await fetch(`${BASE_URL}/attendance`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -70,7 +69,7 @@ const AttendanceTable = ({ newbieId }: AttendanceTableProps) => {
             onHandleDate={handleDate}
             name={"third_class"}
             selectedDate={attendanceData?.thirdClass}
-            disabled={!attendanceData?.firstClass}
+            disabled={!attendanceData?.secondClass}
           />
         </label>
         <label className={cn(css.label, css.dateLabel)}>
@@ -79,7 +78,7 @@ const AttendanceTable = ({ newbieId }: AttendanceTableProps) => {
             onHandleDate={handleDate}
             name={"fourth_class"}
             selectedDate={attendanceData?.fourthClass}
-            disabled={!attendanceData?.firstClass}
+            disabled={!attendanceData?.thirdClass}
           />
         </label>
       </div>

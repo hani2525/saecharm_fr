@@ -37,7 +37,6 @@ const Edit = () => {
   };
 
   const handleEditBtn = () => {
-    console.log(newbieInfo);
     newbieInfo.id = state.id;
     newbieInfo.phone_number = newbieInfo.phoneNumber;
     fetch(`${BASE_URL}/newbies/additional-info`, {
@@ -68,7 +67,7 @@ const Edit = () => {
                     type="text"
                     name="name"
                     className={cn(css.name, css.input)}
-                    value={newbieInfo.name}
+                    defaultValue={newbieInfo.name}
                     onChange={handleChange}
                   />
                 </label>
@@ -78,7 +77,7 @@ const Edit = () => {
                     type="text"
                     name="address"
                     className={cn(css.address, css.input)}
-                    value={newbieInfo.address}
+                    defaultValue={newbieInfo.address}
                     onChange={handleChange}
                   />
                 </label>
@@ -89,7 +88,7 @@ const Edit = () => {
                     type="text"
                     name="phoneNumber"
                     className={cn(css.phoneNumber, css.input)}
-                    value={newbieInfo.phoneNumber}
+                    defaultValue={newbieInfo.phoneNumber}
                     onChange={handleChange}
                   />
                 </label>
@@ -122,7 +121,7 @@ const Edit = () => {
                       name="isBaptized"
                       id="baptism"
                       value={1}
-                      checked={newbieInfo.isBaptized}
+                      defaultChecked={newbieInfo.isBaptized}
                       onChange={handleChange}
                     />
                   </label>
@@ -133,7 +132,7 @@ const Edit = () => {
                       name="isBaptized"
                       id="baptism"
                       value={0}
-                      checked={!newbieInfo.isBaptized}
+                      defaultChecked={!newbieInfo.isBaptized}
                       onChange={handleChange}
                     />
                   </label>
@@ -147,7 +146,7 @@ const Edit = () => {
                   type="text"
                   name="guide"
                   className={cn(css.guide, css.input)}
-                  value={newbieInfo.guide}
+                  defaultValue={newbieInfo.guide}
                   onChange={handleChange}
                 />
               </label>
@@ -157,7 +156,7 @@ const Edit = () => {
                   type="text"
                   name="job"
                   className={cn(css.job, css.input)}
-                  value={newbieInfo.job}
+                  defaultValue={newbieInfo.job}
                   onChange={handleChange}
                 />
               </label>
@@ -185,7 +184,7 @@ const Edit = () => {
                   type="text"
                   name="description"
                   className={cn(css.note, css.input)}
-                  value={newbieInfo.description}
+                  defaultValue={newbieInfo.description}
                   onChange={handleChange}
                 />
               </label>
