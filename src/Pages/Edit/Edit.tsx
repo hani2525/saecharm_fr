@@ -61,13 +61,23 @@ const Edit = () => {
               <img src="/new_charm_logo.png" alt="logo" className={css.logo} />
               <div className={css.inputBox}>
                 <label className={css.label}>
-                  <span className={css.labelName}>이름</span>
+                  <span className={css.labelName}>* 이름</span>
 
                   <input
                     type="text"
                     name="name"
                     className={cn(css.name, css.input)}
                     defaultValue={newbieInfo.name}
+                    onChange={handleChange}
+                  />
+                </label>
+                <label className={css.label}>
+                  <span className={css.labelName}>* 연락처</span>
+                  <input
+                    type="text"
+                    name="phoneNumber"
+                    className={cn(css.phoneNumber, css.input)}
+                    defaultValue={newbieInfo.phoneNumber}
                     onChange={handleChange}
                   />
                 </label>
@@ -81,22 +91,11 @@ const Edit = () => {
                     onChange={handleChange}
                   />
                 </label>
-                <label className={css.label}>
-                  <span className={css.labelName}>연락처</span>
-
-                  <input
-                    type="text"
-                    name="phoneNumber"
-                    className={cn(css.phoneNumber, css.input)}
-                    defaultValue={newbieInfo.phoneNumber}
-                    onChange={handleChange}
-                  />
-                </label>
               </div>
             </div>
             <div className={css.dateInfo}>
               <label className={cn(css.label, css.dateLabel)}>
-                <span className={css.labelName}>등록일</span>
+                <span className={css.labelName}>* 등록일</span>
                 <DatePick
                   onHandleDate={handleDate}
                   name={"first_visit"}
@@ -104,7 +103,7 @@ const Edit = () => {
                 />
               </label>
               <label className={cn(css.label, css.dateLabel)}>
-                <span className={css.labelName}>생년월일</span>
+                <span className={css.labelName}>* 생년월일</span>
                 <DatePick
                   onHandleDate={handleDate}
                   name={"birth_date"}
@@ -161,7 +160,7 @@ const Edit = () => {
                 />
               </label>
               <label className={cn(css.label, css.selectLabel)}>
-                담당 목자
+                * 담당 목자
                 <select
                   name="responsibility"
                   id="responsibility"

@@ -85,15 +85,15 @@ const Detail = () => {
                   </div>
                 </div>
                 <div className={css.infoBox}>
-                  <span className={css.valueName}>주소</span>
-                  <div className={cn(css.address, css.value)}>
-                    {newbieData.address}
-                  </div>
-                </div>
-                <div className={css.infoBox}>
                   <span className={css.valueName}>연락처</span>
                   <div className={cn(css.phoneNumber, css.value)}>
                     {newbieData.phoneNumber}
+                  </div>
+                </div>
+                <div className={css.infoBox}>
+                  <span className={css.valueName}>주소</span>
+                  <div className={cn(css.address, css.value)}>
+                    {newbieData.address}
                   </div>
                 </div>
               </div>

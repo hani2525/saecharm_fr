@@ -22,6 +22,7 @@ const Add = () => {
     guide: "",
     job: "",
     description: "",
+    responsibility: "",
     gender: "",
   });
 
@@ -51,6 +52,26 @@ const Add = () => {
 
   const handleAddBtn = () => {
     //TODO: 내용 중에 빈칸이 있으면 알림 뜨기
+    const {
+      name,
+      first_visit,
+      birth_date,
+      phone_number,
+      gender,
+      responsibility,
+    } = newbieInfo;
+    if (
+      !name ||
+      !first_visit ||
+      !birth_date ||
+      !phone_number ||
+      !gender ||
+      !responsibility
+    ) {
+      alert("필수 사항을 꼭 기입해주세요.");
+      return;
+    }
+
     fetch(`${BASE_URL}/newbies/detail`, {
       method: "POST",
       headers: {
@@ -78,11 +99,21 @@ const Add = () => {
             <img src="/new_charm_logo.png" alt="logo" className={css.logo} />
             <div className={css.inputBox}>
               <label className={css.label}>
-                <span className={css.labelName}>이름</span>
+                <span className={css.labelName}>* 이름</span>
                 <input
                   type="text"
                   className={cn(css.name, css.input)}
                   name="name"
+                  onChange={handleChange}
+                />
+              </label>
+              <label className={css.label}>
+                <span className={css.labelName}>* 연락처</span>
+
+                <input
+                  type="text"
+                  className={cn(css.phoneNumber, css.input)}
+                  name="phone_number"
                   onChange={handleChange}
                 />
               </label>
@@ -95,25 +126,15 @@ const Add = () => {
                   onChange={handleChange}
                 />
               </label>
-              <label className={css.label}>
-                <span className={css.labelName}>연락처</span>
-
-                <input
-                  type="text"
-                  className={cn(css.phoneNumber, css.input)}
-                  name="phone_number"
-                  onChange={handleChange}
-                />
-              </label>
             </div>
           </div>
           <div className={css.dateInfo}>
             <label className={cn(css.label, css.dateLabel)}>
-              <span className={css.labelName}>등록일</span>
+              <span className={css.labelName}>* 등록일</span>
               <DatePick onHandleDate={handleDate} name={"first_visit"} />
             </label>
             <label className={cn(css.label, css.dateLabel)}>
-              <span className={css.labelName}>생년월일</span>
+              <span className={css.labelName}>* 생년월일</span>
               <DatePick onHandleDate={handleDate} name={"birth_date"} />
             </label>
             <fieldset className={css.radioInfo}>
@@ -142,7 +163,7 @@ const Add = () => {
               </div>
             </fieldset>
             <fieldset className={css.radioInfo}>
-              <span>성별</span>
+              <span>* 성별</span>
               <div className={css.radioBox}>
                 <label>
                   <span className={css.labelName}>남성</span>
@@ -187,7 +208,7 @@ const Add = () => {
               />
             </label>
             <label className={cn(css.label, css.selectLabel)}>
-              담당 목자
+              * 담당 목자
               <select
                 name="responsibility"
                 id="responsibility"
