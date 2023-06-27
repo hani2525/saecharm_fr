@@ -1,6 +1,6 @@
-import React from "react";
-import Pasture from "../Pasture";
-import css from "./Village.module.scss";
+import React from 'react';
+import Pasture from '../Pasture';
+import css from './Village.module.scss';
 
 const Village = () => {
   return (

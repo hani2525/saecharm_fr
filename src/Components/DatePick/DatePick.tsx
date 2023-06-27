@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { DatePicker } from "react-rainbow-components";
+import React, { useEffect, useState } from 'react';
+import { DatePicker } from 'react-rainbow-components';
 
 type DatePickProps = {
   name: string;
@@ -17,7 +17,7 @@ const DatePick = ({
 }: DatePickProps) => {
   const initialState = {
     date: selectedDate ? selectedDate : new Date(),
-    locale: { name: "ko-KO" },
+    locale: { name: 'ko-KO' },
   };
 
   const containerStyles = {
@@ -30,7 +30,7 @@ const DatePick = ({
   }, [selectedDate]);
 
   const handlePickDate = (value: any) => {
-    if (window.confirm("날짜를 선택하시겠습니까?")) {
+    if (window.confirm('날짜를 선택하시겠습니까?')) {
       onHandleDate(name, value);
       setDate(value);
     } else return;
@@ -45,7 +45,7 @@ const DatePick = ({
         <DatePicker
           id="datePicker-1"
           value={date}
-          onChange={(value) => handlePickDate(value)}
+          onChange={value => handlePickDate(value)}
           label=""
           formatStyle="large"
           locale={initialState.locale.name}

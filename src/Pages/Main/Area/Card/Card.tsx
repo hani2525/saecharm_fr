@@ -1,6 +1,6 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import css from "./Card.module.scss";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import css from './Card.module.scss';
 
 interface Props {
   id: number;

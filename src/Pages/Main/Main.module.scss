@@ -1,11 +1,22 @@
+@import 'styles/mediaQuery.scss';
+
 .container {
   margin: 20px;
+
+  @media #{$mobile} {
+    margin: 10px 0;
+  }
 }
 
 .title {
-  font-size: 18px;
-  letter-spacing: 1.5px;
+  font-size: 1.3vw;
   color: #c0a080;
+  letter-spacing: 1.5px;
+
+  @media #{$mobile} {
+    margin-left: 10px;
+    font-size: 3vw;
+  }
 }
 
 .boardWrapper {

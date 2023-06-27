@@ -1,10 +1,10 @@
-import GNB from "Components/GNB";
-import React, { useState } from "react";
-import css from "./Add.module.scss";
-import { cn } from "utils";
-import DatePick from "Components/DatePick";
-import { useNavigate } from "react-router-dom";
-import BASE_URL from "config";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import DatePick from 'Components/DatePick';
+import GNB from 'Components/GNB';
+import BASE_URL from 'config';
+import { cn } from 'utils';
+import css from './Add.module.scss';
 
 const Add = () => {
   const navigate = useNavigate();
@@ -12,31 +12,31 @@ const Add = () => {
   //TODO: 추후에 Type 만들어서 관리
   const [newbieInfo, setNewbieInfo] = useState({
     admin_id: 1,
-    profile_image: "",
-    name: "",
-    first_visit: "",
-    birth_date: "",
+    profile_image: '',
+    name: '',
+    first_visit: '',
+    birth_date: '',
     is_baptized: false,
-    address: "",
-    phone_number: "",
-    guide: "",
-    job: "",
-    description: "",
-    responsibility: "",
-    gender: "",
+    address: '',
+    phone_number: '',
+    guide: '',
+    job: '',
+    description: '',
+    responsibility: '',
+    gender: '',
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
     const value = e.target.value;
-    setNewbieInfo((prev) => ({
+    setNewbieInfo(prev => ({
       ...prev,
       [name]: value,
     }));
   };
 
   const handleDate = (name: string, date: Date) => {
-    setNewbieInfo((prev) => ({
+    setNewbieInfo(prev => ({
       ...prev,
       [name]: date,
     }));
@@ -44,7 +44,7 @@ const Add = () => {
 
   const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const admin_id = Number(e.target.value);
-    setNewbieInfo((prev) => ({
+    setNewbieInfo(prev => ({
       ...prev,
       admin_id: admin_id,
     }));
@@ -68,22 +68,22 @@ const Add = () => {
       !gender ||
       !responsibility
     ) {
-      alert("필수 사항을 꼭 기입해주세요.");
+      alert('필수 사항을 꼭 기입해주세요.');
       return;
     }
 
     fetch(`${BASE_URL}/newbies/detail`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(newbieInfo),
     })
-      .then((res) => res.json())
-      .then((res) => {
-        if (res.message === "CREATE_NEWBIE_SUCCESS") {
-          alert("성공적으로 새가족 등록 완성!");
-          navigate("/list/main");
+      .then(res => res.json())
+      .then(res => {
+        if (res.message === 'CREATE_NEWBIE_SUCCESS') {
+          alert('성공적으로 새가족 등록 완성!');
+          navigate('/list/main');
         }
       });
   };
@@ -96,7 +96,11 @@ const Add = () => {
         <span className={css.title}>✏️ 새가족 등록</span>
         <div className={css.addBox}>
           <div className={css.personalInfo}>
-            <img src="/new_charm_logo.png" alt="logo" className={css.logo} />
+            <img
+              src="/new_charm_logo.png"
+              alt="defaultImg"
+              className={css.defaultImg}
+            />
             <div className={css.inputBox}>
               <label className={css.label}>
                 <span className={css.labelName}>* 이름</span>
@@ -131,11 +135,11 @@ const Add = () => {
           <div className={css.dateInfo}>
             <label className={cn(css.label, css.dateLabel)}>
               <span className={css.labelName}>* 등록일</span>
-              <DatePick onHandleDate={handleDate} name={"first_visit"} />
+              <DatePick onHandleDate={handleDate} name={'first_visit'} />
             </label>
             <label className={cn(css.label, css.dateLabel)}>
               <span className={css.labelName}>* 생년월일</span>
-              <DatePick onHandleDate={handleDate} name={"birth_date"} />
+              <DatePick onHandleDate={handleDate} name={'birth_date'} />
             </label>
             <fieldset className={css.radioInfo}>
               <span>세례 유무</span>

@@ -1,5 +1,5 @@
-import React from "react";
-import css from "./Pasture.module.scss";
+import React from 'react';
+import css from './Pasture.module.scss';
 
 const Pasture = () => {
   return (

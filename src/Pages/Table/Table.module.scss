@@ -4,13 +4,13 @@
 
 .title {
   font-size: 18px;
-  letter-spacing: 1.5px;
   color: #c0a080;
+  letter-spacing: 1.5px;
 }
 
 .boardWrapper {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
+  flex-wrap: wrap;
   padding: 10px;
 }

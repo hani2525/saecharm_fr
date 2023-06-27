@@ -1,13 +1,13 @@
-import React from "react";
-import Login from "Pages/Login";
-import Main from "Pages/Main";
-import Add from "Pages/Add";
-import Table from "Pages/Table";
-import Detail from "Pages/Detail";
-import Edit from "Pages/Edit";
-import { createBrowserRouter } from "react-router-dom";
-import PageWithLogin from "Pages/Login/PagesWithLogin";
-import PageWithoutLogin from "Pages/Login/PagesWithoutLogin";
+import React from 'react';
+import { createBrowserRouter } from 'react-router-dom';
+import Add from 'Pages/Add';
+import Detail from 'Pages/Detail';
+import Edit from 'Pages/Edit';
+import Login from 'Pages/Login';
+import PageWithLogin from 'Pages/Login/PagesWithLogin';
+import PageWithoutLogin from 'Pages/Login/PagesWithoutLogin';
+import Main from 'Pages/Main';
+import Table from 'Pages/Table';
 
 export interface RouterItem {
   path: string;
@@ -17,52 +17,52 @@ export interface RouterItem {
 }
 export const RouterInfo: RouterItem[] = [
   {
-    path: "/",
+    path: '/',
     element: <Login />,
     withAuth: false,
-    label: "login",
+    label: 'login',
   },
   {
-    path: "/login",
+    path: '/login',
     element: <Login />,
     withAuth: false,
-    label: "login",
+    label: 'login',
   },
   {
-    path: "/list/main",
+    path: '/list/main',
     element: <Main />,
     withAuth: true,
-    label: "main",
+    label: 'main',
   },
   {
-    path: "/add",
+    path: '/add',
     element: <Add />,
     withAuth: true,
-    label: "add",
+    label: 'add',
   },
   {
-    path: "/table",
+    path: '/table',
     element: <Table />,
     withAuth: true,
-    label: "table",
+    label: 'table',
   },
   {
-    path: "/list/total",
+    path: '/list/total',
     element: <Main />,
     withAuth: true,
-    label: "total",
+    label: 'total',
   },
   {
-    path: "/detail/:id",
+    path: '/detail/:id',
     element: <Detail />,
     withAuth: true,
-    label: "detail",
+    label: 'detail',
   },
   {
-    path: "/edit",
+    path: '/edit',
     element: <Edit />,
     withAuth: true,
-    label: "edit",
+    label: 'edit',
   },
 ];
 //라우터를 생성
@@ -77,5 +77,5 @@ export const RouterObj = createBrowserRouter(
           path: routerInfo.path,
           element: <PageWithoutLogin>{routerInfo.element}</PageWithoutLogin>,
         };
-  })
+  }),
 );
