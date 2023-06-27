@@ -1,10 +1,10 @@
-import GNB from "Components/GNB";
-import React, { useEffect, useRef, useState } from "react";
-import css from "./Detail.module.scss";
-import { cn } from "utils";
-import { useNavigate, useParams } from "react-router-dom";
-import AttendanceTable from "./AttendanceTable";
-import BASE_URL from "config";
+import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import GNB from 'Components/GNB';
+import BASE_URL from 'config';
+import { cn } from 'utils';
+import AttendanceTable from './AttendanceTable';
+import css from './Detail.module.scss';
 
 const Detail = () => {
   const navigate = useNavigate();
@@ -18,19 +18,19 @@ const Detail = () => {
 
   useEffect(() => {
     fetch(`${BASE_URL}/newbies/detail/${newbieId}`)
-      .then((res) => res.json())
-      .then((data) => setNewbieData(data.data[0]));
+      .then(res => res.json())
+      .then(data => setNewbieData(data.data[0]));
   }, []);
 
   useEffect(() => {
     fetch(`${BASE_URL}/memos/${newbieId}`)
-      .then((res) => res.json())
-      .then((data) => setMemoData(data.data));
+      .then(res => res.json())
+      .then(data => setMemoData(data.data));
   }, []);
 
   //TODO: 날짜 정제
   const goToEdit = () => {
-    navigate("/edit", {
+    navigate('/edit', {
       state: {
         data: newbieData,
         id: newbieId,
@@ -39,7 +39,7 @@ const Detail = () => {
   };
 
   const handleClick = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       handleMemoBtn();
     }
   };
@@ -48,20 +48,20 @@ const Detail = () => {
     const memoValue = memoInput.current!.value;
 
     fetch(`${BASE_URL}/memos/new-memo`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        writer_id: localStorage.getItem("id"),
+        writer_id: localStorage.getItem('id'),
         target_id: newbieId,
         content: memoValue,
       }),
     })
-      .then((res) => res.json())
-      .then((res) => {
-        if (res.message === "CREATE_MEMO_SUCCESS") {
-          memoInput.current!.value = "";
+      .then(res => res.json())
+      .then(res => {
+        if (res.message === 'CREATE_MEMO_SUCCESS') {
+          memoInput.current!.value = '';
           //TODO: react query로 관리
           setMemoData([]);
         }
@@ -76,7 +76,11 @@ const Detail = () => {
           <span className={css.title}>🐏 새가족 정보</span>
           <div className={css.detailInfo}>
             <div className={css.mainInfo}>
-              <img src="/new_charm_logo.png" alt="logo" className={css.logo} />
+              <img
+                src="/new_charm_logo.png"
+                alt="defaultImg"
+                className={css.defaultImg}
+              />
               <div className={css.personalInfo}>
                 <div className={css.infoBox}>
                   <span className={css.valueName}>이름</span>
@@ -112,7 +116,7 @@ const Detail = () => {
                 </div>
               </div>
               <fieldset className={css.radioInfo}>
-                <span>세례 유무</span>
+                <span className={css.radioName}>세례 유무</span>
                 <div className={css.radioBox}>
                   <label>
                     <span className={css.labelName}>받음</span>
@@ -139,7 +143,7 @@ const Detail = () => {
                 </div>
               </fieldset>
               <fieldset className={css.radioInfo}>
-                <span>성별</span>
+                <span className={css.radioName}>성별</span>
                 <div className={css.radioBox}>
                   <label>
                     <span className={css.labelName}>남성</span>
@@ -148,7 +152,7 @@ const Detail = () => {
                       name="gender"
                       id="gender"
                       value="true"
-                      checked={newbieData.gender === "male"}
+                      checked={newbieData.gender === 'male'}
                       disabled
                     />
                   </label>
@@ -159,7 +163,7 @@ const Detail = () => {
                       name="gender"
                       id="gender"
                       value="false"
-                      checked={newbieData.gender === "female"}
+                      checked={newbieData.gender === 'female'}
                       disabled
                     />
                   </label>
@@ -195,9 +199,9 @@ const Detail = () => {
               <span className={css.valueName}>메모</span>
               <div className={css.memoBoard}>
                 {memoData &&
-                  memoData.map((memo) => {
+                  memoData.map(memo => {
                     return (
-                      <div className={css.memoCard}>
+                      <div className={css.memoCard} key={memo.content}>
                         <div className={css.writerInfo}>
                           <span className={css.writer}>
                             {memo.responsibility}
@@ -218,7 +222,7 @@ const Detail = () => {
                   className={css.input}
                   ref={memoInput}
                   placeholder="새가족 관련 정보를 적어주시면 메모로 저장됩니다."
-                  onKeyDown={(e) => handleClick(e)}
+                  onKeyDown={e => handleClick(e)}
                 />
                 <div className={css.saveBtn} onClick={handleMemoBtn}>
                   등록

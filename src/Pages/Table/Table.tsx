@@ -1,8 +1,7 @@
-import GNB from "Components/GNB";
-import BASE_URL from "config";
-import React, { useEffect } from "react";
-import css from "./Table.module.scss";
-import Village from "./Village";
+import React from 'react';
+import GNB from 'Components/GNB';
+import Village from './Village';
+import css from './Table.module.scss';
 
 const Table = () => {
   //전체 목장 목록 가져오기

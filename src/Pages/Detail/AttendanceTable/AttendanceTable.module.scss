@@ -1,6 +1,12 @@
+@import 'styles/mediaQuery.scss';
+
 .container {
   padding: 20px 5px;
   border-bottom: 1px solid #e1d7c6;
+
+  @media #{$mobile} {
+    overflow: hidden;
+  }
 }
 
 .labelName {
@@ -10,4 +16,8 @@
 .infoBox {
   display: flex;
   gap: 10px;
+
+  @media #{$mobile} {
+    flex-direction: column;
+  }
 }

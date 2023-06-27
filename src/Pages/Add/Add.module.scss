@@ -1,57 +1,86 @@
+@import 'styles/mediaQuery.scss';
+
 .container {
   margin: 20px;
   color: #8d7b68;
+
+  @media #{$mobile} {
+    margin-top: 10px;
+  }
 }
 
 .title {
   font-size: 18px;
-  letter-spacing: 1.5px;
   color: #c0a080;
+  letter-spacing: 1.5px;
+
+  @media #{$mobile} {
+    font-size: 13px;
+  }
 }
 
 .addBox {
-  background-color: white;
   display: flex;
-  width: 70%;
+  gap: 20px;
   flex-direction: column;
   margin: 10px auto;
   padding: 15px 30px;
-  gap: 20px;
-  border-radius: 10px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  width: 70%;
+  background-color: white;
+  border-radius: 10px;
+
+  @media #{$mobile} {
+    gap: 20px;
+    width: 100%;
+    font-size: 10px;
+  }
 }
 
 .personalInfo {
-  padding-bottom: 10px;
-  border-bottom: 1px solid #e1d7c6;
   display: flex;
   gap: 50px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e1d7c6;
+
+  @media #{$mobile} {
+    gap: 20px;
+  }
 }
 
 .inputBox {
   display: flex;
   flex-direction: column;
   width: 50%;
+
+  @media #{$mobile} {
+    width: 100%;
+  }
 }
 
 .label {
-  width: 100%;
-  padding: 5px;
   margin-bottom: 10px;
+  padding: 5px;
+  width: 100%;
 }
 
 .input {
-  width: 100%;
+  margin-top: 5px;
   padding: 7px 10px;
   border: 3px solid #f9f5eb;
+  width: 100%;
   border-radius: 5px;
-  margin-top: 5px;
 }
 
-.logo {
+.defaultImg {
   width: 150px;
   height: 200px;
   cursor: pointer;
+
+  @media #{$mobile} {
+    width: 60px;
+    height: 60px;
+  }
 }
 
 .dateInfo {
@@ -66,42 +95,53 @@
 
   .dateLabel {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
     gap: 7px;
+    align-items: flex-start;
+    flex-direction: column;
   }
 }
 
 .radioInfo {
-  width: 30%;
   display: flex;
-  flex-direction: column;
   gap: 12px;
+  flex-direction: column;
+  width: 30%;
 }
 
 .radioBox {
   display: flex;
+
   label {
     color: black;
     cursor: pointer;
   }
+
   input {
     accent-color: #665a48;
+  }
+
+  .labelName {
+    @media #{$mobile} {
+      zoom: 0.8;
+    }
   }
 }
 
 .additionalInfo {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  //   flex-direction: column;
+  justify-content: space-between;
   border-bottom: 1px solid #e1d7c6;
 }
 
 .selectLabel {
   display: flex;
-  flex-direction: column;
   gap: 5px;
+  flex-direction: column;
+
+  @media #{$mobile} {
+    width: 40%;
+  }
 }
 
 .select {
@@ -111,15 +151,19 @@
 }
 
 .saveBtn {
-  width: 20%;
   margin: 10px auto;
   padding: 20px 30px;
   border: 3px solid #e1d7c6;
-  border-radius: 50px;
-  text-align: center;
+  width: 20%;
   font-size: 16px;
-  cursor: pointer;
   color: #8d7b68;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 50px;
+
+  @media #{$mobile} {
+    width: 80%;
+  }
 
   &:hover {
     background-color: #e1d7c6;

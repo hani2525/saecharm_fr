@@ -1,7 +1,7 @@
-import React from "react";
-import { List } from "./type";
-import css from "./Area.module.scss";
-import Card from "./Card";
+import React from 'react';
+import Card from './Card';
+import { List } from './type';
+import css from './Area.module.scss';
 
 interface Props {
   list: List[];
@@ -12,7 +12,8 @@ const Area = ({ list, step }: Props) => {
   return (
     <div className={css.container}>
       <div className={css.step}>
-        {step} ({list ? list.length : 0}명)
+        <span>{step}</span>
+        <span>({list ? list.length : 0}명)</span>
       </div>
       {list &&
         list.map(({ id, name, responsibility, firstDate }) => {

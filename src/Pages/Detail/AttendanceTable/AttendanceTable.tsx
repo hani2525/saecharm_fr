@@ -1,8 +1,8 @@
-import DatePick from "Components/DatePick";
-import React, { useEffect, useState } from "react";
-import { cn } from "utils";
-import BASE_URL from "config";
-import css from "./AttendanceTable.module.scss";
+import React, { useEffect, useState } from 'react';
+import DatePick from 'Components/DatePick';
+import BASE_URL from 'config';
+import { cn } from 'utils';
+import css from './AttendanceTable.module.scss';
 
 type AttendanceTableProps = {
   newbieId: number;
@@ -12,15 +12,15 @@ const AttendanceTable = ({ newbieId }: AttendanceTableProps) => {
   const [attendanceData, setAttendanceData] = useState<any>();
   useEffect(() => {
     fetch(`${BASE_URL}/attendance/info/${newbieId}`)
-      .then((res) => res.json())
-      .then((data) => setAttendanceData(data.data[0]));
+      .then(res => res.json())
+      .then(data => setAttendanceData(data.data[0]));
   }, []);
 
   const handleDate = async (name: string, date: Date) => {
     await fetch(`${BASE_URL}/attendance`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         newbie_id: newbieId,
@@ -28,8 +28,8 @@ const AttendanceTable = ({ newbieId }: AttendanceTableProps) => {
         date,
       }),
     })
-      .then((res) => res.json())
-      .then((res) => {
+      .then(res => res.json())
+      .then(res => {
         console.log(res);
       });
   };
@@ -41,7 +41,7 @@ const AttendanceTable = ({ newbieId }: AttendanceTableProps) => {
           <span className={css.labelName}>OT</span>
           <DatePick
             onHandleDate={handleDate}
-            name={"orientation"}
+            name={'orientation'}
             selectedDate={attendanceData?.orientation}
           />
         </label>
@@ -49,7 +49,7 @@ const AttendanceTable = ({ newbieId }: AttendanceTableProps) => {
           <span className={css.labelName}>1차 교육</span>
           <DatePick
             onHandleDate={handleDate}
-            name={"first_class"}
+            name={'first_class'}
             selectedDate={attendanceData?.firstClass}
             disabled={!attendanceData?.orientation}
           />
@@ -58,7 +58,7 @@ const AttendanceTable = ({ newbieId }: AttendanceTableProps) => {
           <span className={css.labelName}>2차 교육</span>
           <DatePick
             onHandleDate={handleDate}
-            name={"second_class"}
+            name={'second_class'}
             selectedDate={attendanceData?.firstClass}
             disabled={!attendanceData?.firstClass}
           />
@@ -67,7 +67,7 @@ const AttendanceTable = ({ newbieId }: AttendanceTableProps) => {
           <span className={css.labelName}>3차 교육</span>
           <DatePick
             onHandleDate={handleDate}
-            name={"third_class"}
+            name={'third_class'}
             selectedDate={attendanceData?.thirdClass}
             disabled={!attendanceData?.secondClass}
           />
@@ -76,7 +76,7 @@ const AttendanceTable = ({ newbieId }: AttendanceTableProps) => {
           <span className={css.labelName}>4차 교육</span>
           <DatePick
             onHandleDate={handleDate}
-            name={"fourth_class"}
+            name={'fourth_class'}
             selectedDate={attendanceData?.fourthClass}
             disabled={!attendanceData?.thirdClass}
           />

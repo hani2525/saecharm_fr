@@ -1,103 +1,154 @@
+@import 'styles/mediaQuery.scss';
+
 .container {
   margin: 20px;
+
+  @media #{$mobile} {
+    margin-top: 10px;
+  }
 }
 
 .title {
   font-size: 18px;
-  letter-spacing: 1.5px;
   color: #c0a080;
+  letter-spacing: 1.5px;
+
+  @media #{$mobile} {
+    font-size: 13px;
+  }
 }
 
 .detailInfo {
-  background-color: white;
   display: flex;
-  position: relative;
-  width: 70%;
   flex-direction: column;
   margin: 10px auto;
   padding: 15px 30px;
-  border-radius: 10px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  position: relative;
+  width: 70%;
+  background-color: white;
+  border-radius: 10px;
+
+  @media #{$mobile} {
+    width: 95%;
+  }
 }
 
 .mainInfo {
-  padding: 20px 0;
-  border-bottom: 1px solid #e1d7c6;
   display: flex;
   gap: 50px;
+  padding: 20px 0;
+  border-bottom: 1px solid #e1d7c6;
+}
+
+.defaultImg {
+  width: 150px;
+  height: 200px;
+  cursor: pointer;
+
+  @media #{$mobile} {
+    width: 60px;
+    height: 60px;
+  }
 }
 
 .personalInfo {
   display: flex;
+  gap: 20px;
   flex-direction: column;
   width: 70%;
-  gap: 20px;
+
+  @media #{$mobile} {
+    gap: 10px;
+    font-size: 12px;
+  }
 
   .value {
     margin-top: 7px;
     width: 70%;
+
+    @media #{$mobile} {
+      width: 100%;
+    }
   }
 }
 
 .editBtn {
-  background-color: #f9f5eb;
-  border-radius: 10px;
   padding: 10px 15px;
   position: absolute;
   right: 15px;
+  background-color: #f9f5eb;
   color: #665a48;
   cursor: pointer;
+  border-radius: 10px;
+
+  @media #{$mobile} {
+    padding: 7px 15px;
+    font-size: 10px;
+  }
 
   &:hover {
     background-color: #e8d2a6;
   }
 }
 
-.title {
-  width: 100%;
-  padding: 5px;
-  color: #8d7b68;
-}
-
 .valueName {
   color: #8d7b68;
+
+  @media #{$mobile} {
+    font-size: 12px;
+  }
 }
 
 .value {
+  margin-top: 7px;
   padding: 7px 10px;
   border: 3px solid #f9f5eb;
-  border-radius: 5px;
-  margin-top: 7px;
   color: #7f8487;
-}
+  border-radius: 5px;
 
-.logo {
-  width: 150px;
-  height: 200px;
-  cursor: pointer;
+  @media #{$mobile} {
+    font-size: 10px;
+  }
 }
 
 .dateInfo {
   display: flex;
-  border-bottom: 1px solid #e1d7c6;
-  padding: 20px 5px;
   gap: 10px;
+  padding: 20px 5px;
+  border-bottom: 1px solid #e1d7c6;
+
+  @media #{$mobile} {
+    display: flex;
+    align-items: center;
+  }
   .infoBox {
     width: 33%;
   }
 }
 
 .radioInfo {
-  width: 30%;
   display: flex;
-  flex-direction: column;
   gap: 12px;
+  flex-direction: column;
+  width: 30%;
   color: #8d7b68;
+}
+
+.radioName {
+  @media #{$mobile} {
+    font-size: 12px;
+  }
 }
 
 .radioBox {
   display: flex;
   gap: 30px;
+
+  @media #{$mobile} {
+    gap: 1px;
+    font-size: 10px;
+  }
   label {
     color: #7f8487;
     cursor: pointer;
@@ -109,8 +160,8 @@
 
 .additionalInfo {
   display: flex;
-  align-items: center;
   gap: 10px;
+  align-items: center;
   padding: 20px 5px;
   border-bottom: 1px solid #e1d7c6;
   .infoBox {
@@ -129,19 +180,19 @@
 
 .memoCard {
   margin-top: 10px;
-  background-color: #e4dccf;
   padding: 15px;
-  border-radius: 15px;
+  background-color: #e4dccf;
   color: #7f8487;
+  border-radius: 15px;
 }
 
 .writerInfo {
   display: flex;
-  align-items: center;
-  color: #8b7e74;
   gap: 10px;
-  font-size: 13px;
+  align-items: center;
   margin-bottom: 5px;
+  font-size: 13px;
+  color: #8b7e74;
 }
 
 .content {
@@ -149,31 +200,42 @@
 }
 
 .memoInput {
-  margin-top: 20px;
   display: flex;
-  align-items: center;
   gap: 5px;
+  align-items: center;
+  margin-top: 20px;
 }
 
 .input {
-  width: 90%;
+  margin-top: 5px;
   padding: 20px 10px;
   border: 2px solid #e8d2a6;
+  width: 90%;
   border-radius: 5px;
-  margin-top: 5px;
+
+  @media #{$mobile} {
+    width: 85%;
+    &::placeholder {
+      font-size: 8px;
+    }
+  }
 }
 
 .saveBtn {
-  background-color: #f9f5eb;
   padding: 15px 5px;
-  border-radius: 20px;
   width: 10%;
-  text-align: center;
+  background-color: #f9f5eb;
   font-size: 14px;
   color: #665a48;
+  text-align: center;
   cursor: pointer;
+  border-radius: 20px;
 
   &:hover {
     background-color: #e8d2a6;
+  }
+
+  @media #{$mobile} {
+    width: 25%;
   }
 }

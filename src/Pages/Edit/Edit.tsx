@@ -1,16 +1,15 @@
-import GNB from "Components/GNB";
-import React, { useState } from "react";
-import css from "./Edit.module.scss";
-import { cn } from "utils";
-import DatePick from "Components/DatePick";
-import { useLocation, useNavigate } from "react-router-dom";
-import BASE_URL from "config";
+import React, { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import DatePick from 'Components/DatePick';
+import GNB from 'Components/GNB';
+import BASE_URL from 'config';
+import { cn } from 'utils';
+import css from './Edit.module.scss';
 
 const Edit = () => {
   //TODO: Detail 컴포넌트랑 같이 관리
   const { state } = useLocation();
   const navigate = useNavigate();
-
   const [newbieInfo, setNewbieInfo] = useState<any>(state.data);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
@@ -40,14 +39,14 @@ const Edit = () => {
     newbieInfo.id = state.id;
     newbieInfo.phone_number = newbieInfo.phoneNumber;
     fetch(`${BASE_URL}/newbies/additional-info`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(newbieInfo),
     })
-      .then((res) => res.json())
-      .then((res) => console.log(res));
+      .then(res => res.json())
+      .then(res => console.log(res));
   };
 
   return (
@@ -58,7 +57,11 @@ const Edit = () => {
           <span className={css.title}>✏️ 새가족 등록</span>
           <div className={css.addBox}>
             <div className={css.personalInfo}>
-              <img src="/new_charm_logo.png" alt="logo" className={css.logo} />
+              <img
+                src="/new_charm_logo.png"
+                alt="defaultImg"
+                className={css.defaultImg}
+              />
               <div className={css.inputBox}>
                 <label className={css.label}>
                   <span className={css.labelName}>* 이름</span>
@@ -98,7 +101,7 @@ const Edit = () => {
                 <span className={css.labelName}>* 등록일</span>
                 <DatePick
                   onHandleDate={handleDate}
-                  name={"first_visit"}
+                  name={'first_visit'}
                   selectedDate={newbieInfo.firstVisit}
                 />
               </label>
@@ -106,7 +109,7 @@ const Edit = () => {
                 <span className={css.labelName}>* 생년월일</span>
                 <DatePick
                   onHandleDate={handleDate}
-                  name={"birth_date"}
+                  name={'birth_date'}
                   selectedDate={newbieInfo.birthDate}
                 />
               </label>
@@ -132,6 +135,31 @@ const Edit = () => {
                       id="baptism"
                       value={0}
                       defaultChecked={!newbieInfo.isBaptized}
+                      onChange={handleChange}
+                    />
+                  </label>
+                </div>
+              </fieldset>
+              <fieldset className={css.radioInfo}>
+                <span>* 성별</span>
+                <div className={css.radioBox}>
+                  <label>
+                    <span className={css.labelName}>남성</span>
+                    <input
+                      type="radio"
+                      name="gender"
+                      id="gender"
+                      value="male"
+                      onChange={handleChange}
+                    />
+                  </label>
+                  <label>
+                    <span className={css.labelName}>여성</span>
+                    <input
+                      type="radio"
+                      name="gender"
+                      id="gender"
+                      value="female"
                       onChange={handleChange}
                     />
                   </label>
