@@ -52,21 +52,16 @@ const Add = () => {
 
   const handleAddBtn = () => {
     //TODO: 내용 중에 빈칸이 있으면 알림 뜨기
-    const {
-      name,
-      first_visit,
-      birth_date,
-      phone_number,
-      gender,
-      responsibility,
-    } = newbieInfo;
+    const { name, first_visit, birth_date, phone_number, gender, admin_id } =
+      newbieInfo;
+
     if (
       !name ||
       !first_visit ||
       !birth_date ||
       !phone_number ||
       !gender ||
-      !responsibility
+      !admin_id
     ) {
       alert('필수 사항을 꼭 기입해주세요.');
       return;
