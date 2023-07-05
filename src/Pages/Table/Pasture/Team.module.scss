@@ -1,0 +1,52 @@
+@import 'styles/mediaQuery.scss';
+
+.container {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+
+  @media #{$mobile} {
+    gap: 10px;
+  }
+}
+
+.teamName {
+  margin-bottom: 10px;
+  font-size: 18px;
+  text-align: center;
+
+  @media #{$mobile} {
+    margin-bottom: 5px;
+    font-size: 15px;
+  }
+}
+
+.member {
+  padding-bottom: 8px;
+  border-bottom: 1px dotted #d0b8a8;
+}
+
+.sheepList {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-direction: column;
+  @media #{$mobile} {
+    font-size: 10px;
+  }
+}
+
+.leader {
+  font-weight: bold;
+}
+
+.male {
+  color: black;
+}
+
+.female {
+  color: #8d7b68;
+}

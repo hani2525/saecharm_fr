@@ -1,1 +1,1 @@
-export { default } from './Pasture';
+export { default } from './Team';
