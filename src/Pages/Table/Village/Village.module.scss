@@ -1,3 +1,5 @@
+@import 'styles/mediaQuery.scss';
+
 .container {
   display: flex;
   gap: 20px;
@@ -14,6 +16,10 @@
   text-align: center;
   letter-spacing: 2px;
   border-radius: 15px;
+
+  @media #{$mobile} {
+    font-size: 13px;
+  }
 }
 
 .pastureWrapper {
