@@ -91,7 +91,7 @@ const Detail = () => {
                 <div className={css.infoBox}>
                   <span className={css.valueName}>연락처</span>
                   <div className={cn(css.phoneNumber, css.value)}>
-                    {newbieData.phoneNumber}
+                    {newbieData.phone_number}
                   </div>
                 </div>
                 <div className={css.infoBox}>
@@ -106,13 +106,13 @@ const Detail = () => {
               <div className={css.infoBox}>
                 <span className={css.valueName}>등록일</span>
                 <div className={cn(css.firstDate, css.value)}>
-                  {newbieData.firstDate.substr(0, 10)}
+                  {newbieData.first_visit.substr(0, 10)}
                 </div>
               </div>
               <div className={css.infoBox}>
                 <span className={css.valueName}>생년월일</span>
                 <div className={cn(css.birthDate, css.value)}>
-                  {newbieData.birthDate.substr(0, 10)}
+                  {newbieData.first_visit.substr(0, 10)}
                 </div>
               </div>
               <fieldset className={css.radioInfo}>
@@ -125,7 +125,7 @@ const Detail = () => {
                       name="baptism"
                       id="baptism"
                       value="true"
-                      checked={newbieData.isBaptized}
+                      checked={newbieData.is_baptized}
                       disabled
                     />
                   </label>
@@ -136,7 +136,7 @@ const Detail = () => {
                       name="baptism"
                       id="baptism"
                       value="false"
-                      checked={!newbieData.isBaptized}
+                      checked={!newbieData.is_baptized}
                       disabled
                     />
                   </label>
