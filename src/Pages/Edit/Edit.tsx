@@ -37,7 +37,6 @@ const Edit = () => {
 
   const handleEditBtn = () => {
     newbieInfo.id = state.id;
-    newbieInfo.phone_number = newbieInfo.phoneNumber;
     fetch(`${BASE_URL}/newbies/additional-info`, {
       method: 'POST',
       headers: {
@@ -80,7 +79,7 @@ const Edit = () => {
                     type="text"
                     name="phoneNumber"
                     className={cn(css.phoneNumber, css.input)}
-                    defaultValue={newbieInfo.phoneNumber}
+                    defaultValue={newbieInfo.phone_number}
                     onChange={handleChange}
                   />
                 </label>
@@ -123,7 +122,7 @@ const Edit = () => {
                       name="isBaptized"
                       id="baptism"
                       value={1}
-                      defaultChecked={newbieInfo.isBaptized}
+                      defaultChecked={newbieInfo.is_baptized}
                       onChange={handleChange}
                     />
                   </label>
@@ -134,7 +133,7 @@ const Edit = () => {
                       name="isBaptized"
                       id="baptism"
                       value={0}
-                      defaultChecked={!newbieInfo.isBaptized}
+                      defaultChecked={!newbieInfo.is_baptized}
                       onChange={handleChange}
                     />
                   </label>
@@ -150,6 +149,7 @@ const Edit = () => {
                       name="gender"
                       id="gender"
                       value="male"
+                      defaultChecked={newbieInfo.gender === 'male'}
                       onChange={handleChange}
                     />
                   </label>
@@ -160,6 +160,7 @@ const Edit = () => {
                       name="gender"
                       id="gender"
                       value="female"
+                      defaultChecked={newbieInfo.gender === 'female'}
                       onChange={handleChange}
                     />
                   </label>
@@ -190,10 +191,10 @@ const Edit = () => {
               <label className={cn(css.label, css.selectLabel)}>
                 * 담당 목자
                 <select
-                  name="responsibility"
-                  id="responsibility"
+                  name="admin_id"
+                  id="admin_id"
                   className={css.select}
-                  defaultValue={newbieInfo.responsibility}
+                  defaultValue={newbieInfo.admin_id}
                   onChange={handleSelect}
                 >
                   <option value="">담당 목자를 선택해주세요</option>
