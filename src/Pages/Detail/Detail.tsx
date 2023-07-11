@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useSwitchModal } from 'utils/hooks/Modal.hook';
 import GNB from 'Components/GNB';
 import BASE_URL from 'config';
 import { cn } from 'utils';
@@ -11,11 +12,14 @@ const Detail = () => {
   const params = useParams();
   const newbieId = Number(params.id);
   const memoInput = useRef<HTMLInputElement>(null);
+  const { isOpenModal, switchModal } = useSwitchModal();
 
   //TODO: any 하지말고 타입 지정하기
   const [newbieData, setNewbieData] = useState<any>();
   const [memoData, setMemoData] = useState<any[]>();
+  const [teamData, setTeamData] = useState<any[]>();
 
+  console.log(newbieData);
   useEffect(() => {
     fetch(`${BASE_URL}/newbies/detail/${newbieId}`)
       .then(res => res.json())
@@ -26,6 +30,12 @@ const Detail = () => {
     fetch(`${BASE_URL}/memos/${newbieId}`)
       .then(res => res.json())
       .then(data => setMemoData(data.data));
+  }, []);
+
+  useEffect(() => {
+    fetch(`${BASE_URL}/members/teams`)
+      .then(res => res.json())
+      .then(data => setTeamData(data.data));
   }, []);
 
   //TODO: 날짜 정제
@@ -66,6 +76,38 @@ const Detail = () => {
           setMemoData([]);
         }
       });
+  };
+
+  const handleAssignBtn = (id: number, team_name: string) => {
+    //modal
+    if (!newbieData.fourth_class) {
+      alert('아직 4주차 교육을 마무리 하지 못했네요!');
+      return;
+    }
+
+    if (window.confirm(`${team_name}으로 배정하시겠습니까?`)) {
+      const name = newbieData.name;
+      const gender = newbieData.gender;
+      const birth_year = Number(newbieData.birth_date.substring(0, 4));
+
+      fetch(`${BASE_URL}/members`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          team_id: id,
+          name,
+          gender,
+          birth_year,
+          position: 3,
+        }),
+      })
+        .then(res => res.json())
+        .then(res => {
+          console.log(res);
+        });
+    }
   };
 
   return (
@@ -229,10 +271,37 @@ const Detail = () => {
                 </div>
               </div>
             </div>
-            <div className={css.editBtn} onClick={goToEdit}>
-              수정
+            <div className={css.btnWrapper}>
+              <div className={cn(css.editBtn, css.btn)} onClick={goToEdit}>
+                수정
+              </div>
+              <div className={cn(css.assignBtn, css.btn)} onClick={switchModal}>
+                목장 배정
+              </div>
             </div>
           </div>
+          {isOpenModal && (
+            <div className={css.modalBackground}>
+              <div className={css.assignModal}>
+                {teamData &&
+                  teamData.map((team: any) => (
+                    <>
+                      <div
+                        className={css.teamBtn}
+                        onClick={() =>
+                          handleAssignBtn(team.team_id, team.team_name)
+                        }
+                      >
+                        {team.team_name} | {team.name}
+                      </div>
+                    </>
+                  ))}
+                <div className={css.exitBtn} onClick={switchModal}>
+                  X
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </>
