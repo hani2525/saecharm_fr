@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useSwitchModal } from 'utils/hooks/Modal.hook';
 import GNB from 'Components/GNB';
+import { useSwitchModal } from 'Components/Modal/Modal.hook';
 import BASE_URL from 'config';
 import { cn } from 'utils';
 import AttendanceTable from './AttendanceTable';
