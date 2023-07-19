@@ -6,14 +6,19 @@ import css from './DateInput.module.scss';
 interface Props {
   labelName: string;
   name: string;
+  selectedDate?: string;
   onHandleDate: (name: string, date: Date) => void;
 }
 
-const DateInput = ({ labelName, name, onHandleDate }: Props) => {
+const DateInput = ({ labelName, name, selectedDate, onHandleDate }: Props) => {
   return (
     <label className={cn(css.label, css.dateLabel)}>
       <span className={css.labelName}>{labelName}</span>
-      <DatePick onHandleDate={onHandleDate} name={name} />
+      <DatePick
+        onHandleDate={onHandleDate}
+        name={name}
+        selectedDate={selectedDate && selectedDate}
+      />
     </label>
   );
 };

@@ -65,7 +65,7 @@ const AssignModal = ({
                 className={css.teamBtn}
                 onClick={() => handleAssignBtn(team.team_id, team.team_name)}
               >
-                {team.team_name} | {team.name}
+                {team.team_name}
               </div>
             </>
           ))}

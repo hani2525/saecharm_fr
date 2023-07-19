@@ -6,7 +6,7 @@ import Button from './Button';
 import DateInput from './DateInput';
 import RadioInput from './RadioInput';
 import SelectInput from './SelectInput';
-import InfoInput from './TextInput';
+import TextInput from './TextInput';
 import { NewbieDataType } from './type';
 import css from './Add.module.scss';
 
@@ -62,7 +62,7 @@ const Add = () => {
       !newbieData.birth_date ||
       !newbieData.phone_number ||
       !newbieData.gender ||
-      !newbieData.responsibility
+      !newbieData.admin_id
     ) {
       alert('필수 사항을 꼭 기입해주세요.');
       return;
@@ -84,6 +84,8 @@ const Add = () => {
       });
   };
 
+  console.log(newbieData);
+
   //TODO: 추후에 input type도 관리하기 (컴포넌트로 관리해서 한 번에 알아보기)
   return (
     <>
@@ -98,20 +100,23 @@ const Add = () => {
               className={css.defaultImg}
             />
             <div className={css.inputBox}>
-              <InfoInput
+              <TextInput
                 labelName="* 이름"
                 name="name"
                 onChange={handleChange}
+                value={isEditPage ? newbieData.name : ''}
               />
-              <InfoInput
+              <TextInput
                 labelName="* 연락처"
                 name="phone_number"
                 onChange={handleChange}
+                value={isEditPage ? newbieData.phone_number : ''}
               />
-              <InfoInput
+              <TextInput
                 labelName="주소"
                 name="address"
                 onChange={handleChange}
+                value={isEditPage ? newbieData.address : ''}
               />
             </div>
           </div>
@@ -120,11 +125,13 @@ const Add = () => {
               labelName="등록일"
               name="first_visit"
               onHandleDate={handleDate}
+              selectedDate={isEditPage ? newbieData.first_visit : ''}
             />
             <DateInput
               labelName="생년월일"
               name="birth_date"
               onHandleDate={handleDate}
+              selectedDate={isEditPage ? newbieData.first_visit : ''}
             />
             <fieldset className={css.radioInfo}>
               <span>세례 유무</span>
@@ -135,6 +142,7 @@ const Add = () => {
                   id="baptism"
                   value={1}
                   onChange={handleChange}
+                  checkedValue={isEditPage && newbieData.is_baptized}
                 />
                 <RadioInput
                   labelName="안받음"
@@ -142,6 +150,7 @@ const Add = () => {
                   id="baptism"
                   value={0}
                   onChange={handleChange}
+                  checkedValue={isEditPage && newbieData.is_baptized}
                 />
               </div>
             </fieldset>
@@ -154,6 +163,7 @@ const Add = () => {
                   id="gender"
                   value="male"
                   onChange={handleChange}
+                  checkedValue={isEditPage && newbieData.gender}
                 />
                 <RadioInput
                   labelName="여성"
@@ -161,25 +171,37 @@ const Add = () => {
                   id="gender"
                   value="female"
                   onChange={handleChange}
+                  checkedValue={isEditPage && newbieData.gender}
                 />
               </div>
             </fieldset>
           </div>
           <div className={css.additionalInfo}>
-            <InfoInput labelName="인도" name="guide" onChange={handleChange} />
-            <InfoInput labelName="직업" name="job" onChange={handleChange} />
+            <TextInput
+              labelName="인도"
+              name="guide"
+              onChange={handleChange}
+              value={isEditPage ? newbieData.guide : ''}
+            />
+            <TextInput
+              labelName="직업"
+              name="job"
+              onChange={handleChange}
+              value={isEditPage ? newbieData.job : ''}
+            />
             <SelectInput onChange={handleSelect} />
           </div>
           <div className={css.noteBox}>
-            <InfoInput
+            <TextInput
               labelName="특이사항"
               name="description"
               onChange={handleChange}
+              value={isEditPage ? newbieData.description : ''}
             />
           </div>
           <Button
-            isEditPage={isEditPage}
             id={isEditPage ? state.id : null}
+            isEditPage={isEditPage}
             onClick={isEditPage ? handleEditBtn : handleAddBtn}
           />
         </div>

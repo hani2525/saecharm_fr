@@ -5,9 +5,10 @@ interface Props {
   labelName: string;
   name: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  value?: string | number;
 }
 
-const TextInput = ({ labelName, name, onChange }: Props) => {
+const TextInput = ({ labelName, name, onChange, value }: Props) => {
   return (
     <label className={css.label}>
       <span className={css.labelName}>{labelName}</span>
@@ -16,6 +17,7 @@ const TextInput = ({ labelName, name, onChange }: Props) => {
         className={css.input}
         name={name}
         onChange={onChange}
+        defaultValue={value}
       />
     </label>
   );

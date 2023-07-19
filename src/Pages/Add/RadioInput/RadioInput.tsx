@@ -6,10 +6,18 @@ interface Props {
   name: string;
   id: string;
   value: number | string;
+  checkedValue?: number | string | boolean;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const RadioInput = ({ labelName, name, id, value, onChange }: Props) => {
+const RadioInput = ({
+  labelName,
+  name,
+  id,
+  value,
+  checkedValue,
+  onChange,
+}: Props) => {
   return (
     <label>
       <span className={css.labelName}>{labelName}</span>
@@ -18,6 +26,7 @@ const RadioInput = ({ labelName, name, id, value, onChange }: Props) => {
         name={name}
         id={id}
         value={value}
+        checked={checkedValue === value}
         onChange={onChange}
       />
     </label>

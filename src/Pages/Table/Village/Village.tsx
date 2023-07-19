@@ -10,15 +10,13 @@ interface Props {
 const Village = ({ teams }: any) => {
   const villageNumber = Number(teams[0]);
   const teamArr = Object.entries(teams[1]);
-  const firstMember: any = teamArr[0][1];
-  const elder = firstMember[0].elder;
 
   return (
     <>
       <div className={css.container}>
         <div className={css.info}>
           <span className={css.viilageNumber}>{villageNumber}마을</span>
-          <span className={css.elder}> | {elder} </span>
+          {/* <span className={css.elder}> </span> */}
         </div>
         <div className={css.pastureWrapper}>
           {teamArr.map(team => (
