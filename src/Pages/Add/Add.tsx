@@ -57,12 +57,12 @@ const Add = () => {
 
   const handleAddBtn = () => {
     if (
-      !newbieData?.name ||
-      !newbieData?.first_visit ||
-      !newbieData?.birth_date ||
-      !newbieData?.phone_number ||
-      !newbieData?.gender ||
-      !newbieData?.responsibility
+      !newbieData.name ||
+      !newbieData.first_visit ||
+      !newbieData.birth_date ||
+      !newbieData.phone_number ||
+      !newbieData.gender ||
+      !newbieData.responsibility
     ) {
       alert('필수 사항을 꼭 기입해주세요.');
       return;
