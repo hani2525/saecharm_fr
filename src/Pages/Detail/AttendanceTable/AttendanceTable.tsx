@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import DatePick from 'Components/DatePick';
 import BASE_URL from 'config';
 import { cn } from 'utils';
+import { AttendanceDataType } from './type';
 import css from './AttendanceTable.module.scss';
 
 type AttendanceTableProps = {
@@ -9,7 +10,7 @@ type AttendanceTableProps = {
 };
 
 const AttendanceTable = ({ newbieId }: AttendanceTableProps) => {
-  const [attendanceData, setAttendanceData] = useState<any>();
+  const [attendanceData, setAttendanceData] = useState<AttendanceDataType>();
   useEffect(() => {
     fetch(`${BASE_URL}/attendance/info/${newbieId}`)
       .then(res => res.json())

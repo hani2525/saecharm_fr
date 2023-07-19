@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BASE_URL from 'config';
 import { cn } from 'utils';
-import logo from './new_charm_logo.png';
 import title from './sae_charm.png';
+import { UserInfoType } from './type';
 import css from './Login.module.scss';
 
 const Login = () => {
@@ -16,10 +16,7 @@ const Login = () => {
     }
   }, []);
 
-  const [userInfo, setUserInfo] = useState({
-    account: null,
-    password: null,
-  });
+  const [userInfo, setUserInfo] = useState<UserInfoType>();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
@@ -38,7 +35,7 @@ const Login = () => {
   };
 
   const handleLogin = () => {
-    if (!userInfo.account || !userInfo.password) {
+    if (!userInfo?.account || !userInfo?.password) {
       alert('아이디 또는 비밀번호를 입력해주세요.');
       return;
     }
@@ -68,8 +65,8 @@ const Login = () => {
   return (
     <div className={css.container}>
       <div className={css.logoWrapper}>
-        <img className={css.logo} src={logo} alt="logo" />
-        <img className={css.title} src={title} alt="logo" />
+        <img className={css.logo} src={'/sae_charm_logo.png'} alt="logo" />
+        <img className={css.title} src={'/sae_charm_title.png'} alt="logo" />
       </div>
       <div className={css.inputLoginBox}>
         <div className={css.inputWrapper}>

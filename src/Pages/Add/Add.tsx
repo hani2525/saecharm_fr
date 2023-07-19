@@ -1,42 +1,34 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import DatePick from 'Components/DatePick';
+import { useLocation, useNavigate } from 'react-router-dom';
 import GNB from 'Components/GNB';
 import BASE_URL from 'config';
-import { cn } from 'utils';
+import Button from './Button';
+import DateInput from './DateInput';
+import RadioInput from './RadioInput';
+import SelectInput from './SelectInput';
+import InfoInput from './TextInput';
+import { NewbieDataType } from './type';
 import css from './Add.module.scss';
 
 const Add = () => {
+  const { state } = useLocation();
+  const isEditPage = state ? true : false;
   const navigate = useNavigate();
-
-  //TODO: 추후에 Type 만들어서 관리
-  const [newbieInfo, setNewbieInfo] = useState({
-    admin_id: 1,
-    profile_image: '',
-    name: '',
-    first_visit: '',
-    birth_date: '',
-    is_baptized: false,
-    address: '',
-    phone_number: '',
-    guide: '',
-    job: '',
-    description: '',
-    responsibility: '',
-    gender: '',
-  });
+  const [newbieData, setnewbieData] = useState<NewbieDataType>(
+    isEditPage ? state.data : null,
+  );
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
     const value = e.target.value;
-    setNewbieInfo(prev => ({
+    setnewbieData(prev => ({
       ...prev,
       [name]: value,
     }));
   };
 
   const handleDate = (name: string, date: Date) => {
-    setNewbieInfo(prev => ({
+    setnewbieData(prev => ({
       ...prev,
       [name]: date,
     }));
@@ -44,29 +36,33 @@ const Add = () => {
 
   const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const admin_id = Number(e.target.value);
-    setNewbieInfo(prev => ({
+    setnewbieData(prev => ({
       ...prev,
       admin_id: admin_id,
     }));
   };
 
+  const handleEditBtn = () => {
+    newbieData.id = state.id;
+    fetch(`${BASE_URL}/newbies/additional-info`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newbieData),
+    })
+      .then(res => res.json())
+      .then(res => console.log(res));
+  };
+
   const handleAddBtn = () => {
-    //TODO: 내용 중에 빈칸이 있으면 알림 뜨기
-    const {
-      name,
-      first_visit,
-      birth_date,
-      phone_number,
-      gender,
-      responsibility,
-    } = newbieInfo;
     if (
-      !name ||
-      !first_visit ||
-      !birth_date ||
-      !phone_number ||
-      !gender ||
-      !responsibility
+      !newbieData?.name ||
+      !newbieData?.first_visit ||
+      !newbieData?.birth_date ||
+      !newbieData?.phone_number ||
+      !newbieData?.gender ||
+      !newbieData?.responsibility
     ) {
       alert('필수 사항을 꼭 기입해주세요.');
       return;
@@ -77,7 +73,7 @@ const Add = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(newbieInfo),
+      body: JSON.stringify(newbieData),
     })
       .then(res => res.json())
       .then(res => {
@@ -97,150 +93,95 @@ const Add = () => {
         <div className={css.addBox}>
           <div className={css.personalInfo}>
             <img
-              src="/new_charm_logo.png"
+              src="/sae_charm_logo.png"
               alt="defaultImg"
               className={css.defaultImg}
             />
             <div className={css.inputBox}>
-              <label className={css.label}>
-                <span className={css.labelName}>* 이름</span>
-                <input
-                  type="text"
-                  className={cn(css.name, css.input)}
-                  name="name"
-                  onChange={handleChange}
-                />
-              </label>
-              <label className={css.label}>
-                <span className={css.labelName}>* 연락처</span>
-
-                <input
-                  type="text"
-                  className={cn(css.phoneNumber, css.input)}
-                  name="phone_number"
-                  onChange={handleChange}
-                />
-              </label>
-              <label className={css.label}>
-                <span className={css.labelName}>주소</span>
-                <input
-                  type="text"
-                  className={cn(css.address, css.input)}
-                  name="address"
-                  onChange={handleChange}
-                />
-              </label>
+              <InfoInput
+                labelName="* 이름"
+                name="name"
+                onChange={handleChange}
+              />
+              <InfoInput
+                labelName="* 연락처"
+                name="phone_number"
+                onChange={handleChange}
+              />
+              <InfoInput
+                labelName="주소"
+                name="address"
+                onChange={handleChange}
+              />
             </div>
           </div>
           <div className={css.dateInfo}>
-            <label className={cn(css.label, css.dateLabel)}>
-              <span className={css.labelName}>* 등록일</span>
-              <DatePick onHandleDate={handleDate} name={'first_visit'} />
-            </label>
-            <label className={cn(css.label, css.dateLabel)}>
-              <span className={css.labelName}>* 생년월일</span>
-              <DatePick onHandleDate={handleDate} name={'birth_date'} />
-            </label>
+            <DateInput
+              labelName="등록일"
+              name="first_visit"
+              onHandleDate={handleDate}
+            />
+            <DateInput
+              labelName="생년월일"
+              name="birth_date"
+              onHandleDate={handleDate}
+            />
             <fieldset className={css.radioInfo}>
               <span>세례 유무</span>
               <div className={css.radioBox}>
-                <label>
-                  <span className={css.labelName}>받음</span>
-                  <input
-                    type="radio"
-                    name="is_baptized"
-                    id="baptism"
-                    value={1}
-                    onChange={handleChange}
-                  />
-                </label>
-                <label>
-                  <span className={css.labelName}>안받음</span>
-                  <input
-                    type="radio"
-                    name="is_baptized"
-                    id="baptism"
-                    value={0}
-                    onChange={handleChange}
-                  />
-                </label>
+                <RadioInput
+                  labelName="받음"
+                  name="is_baptized"
+                  id="baptism"
+                  value={1}
+                  onChange={handleChange}
+                />
+                <RadioInput
+                  labelName="안받음"
+                  name="is_baptized"
+                  id="baptism"
+                  value={0}
+                  onChange={handleChange}
+                />
               </div>
             </fieldset>
             <fieldset className={css.radioInfo}>
               <span>* 성별</span>
               <div className={css.radioBox}>
-                <label>
-                  <span className={css.labelName}>남성</span>
-                  <input
-                    type="radio"
-                    name="gender"
-                    id="gender"
-                    value="male"
-                    onChange={handleChange}
-                  />
-                </label>
-                <label>
-                  <span className={css.labelName}>여성</span>
-                  <input
-                    type="radio"
-                    name="gender"
-                    id="gender"
-                    value="female"
-                    onChange={handleChange}
-                  />
-                </label>
+                <RadioInput
+                  labelName="남성"
+                  name="gender"
+                  id="gender"
+                  value="male"
+                  onChange={handleChange}
+                />
+                <RadioInput
+                  labelName="여성"
+                  name="gender"
+                  id="gender"
+                  value="female"
+                  onChange={handleChange}
+                />
               </div>
             </fieldset>
           </div>
           <div className={css.additionalInfo}>
-            <label className={css.label}>
-              인도
-              <input
-                type="text"
-                className={cn(css.guide, css.input)}
-                name="guide"
-                onChange={handleChange}
-              />
-            </label>
-            <label className={css.label}>
-              직업
-              <input
-                type="text"
-                className={cn(css.job, css.input)}
-                name="job"
-                onChange={handleChange}
-              />
-            </label>
-            <label className={cn(css.label, css.selectLabel)}>
-              * 담당 목자
-              <select
-                name="responsibility"
-                id="responsibility"
-                className={css.select}
-                onChange={handleSelect}
-              >
-                <option value="">담당 목자를 선택해주세요</option>
-                <option value={6}>지원석</option>
-                <option value={5}>전하은</option>
-                <option value={7}>임선우</option>
-                <option value={8}>황종우</option>
-              </select>
-            </label>
+            <InfoInput labelName="인도" name="guide" onChange={handleChange} />
+            <InfoInput labelName="직업" name="job" onChange={handleChange} />
+            <SelectInput onChange={handleSelect} />
           </div>
           <div className={css.noteBox}>
-            <label className={css.label}>
-              특이사항
-              <input
-                type="text"
-                className={cn(css.note, css.input)}
-                name="description"
-                onChange={handleChange}
-              />
-            </label>
+            <InfoInput
+              labelName="특이사항"
+              name="description"
+              onChange={handleChange}
+            />
           </div>
-          <div className={css.saveBtn} onClick={handleAddBtn}>
-            등록
-          </div>
+          <Button
+            isEditPage={isEditPage}
+            id={isEditPage ? state.id : null}
+            onClick={isEditPage ? handleEditBtn : handleAddBtn}
+          />
         </div>
       </div>
     </>

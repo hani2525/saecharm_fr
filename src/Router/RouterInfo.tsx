@@ -2,7 +2,6 @@ import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import Add from 'Pages/Add';
 import Detail from 'Pages/Detail';
-import Edit from 'Pages/Edit';
 import Login from 'Pages/Login';
 import PageWithLogin from 'Pages/Login/PagesWithLogin';
 import PageWithoutLogin from 'Pages/Login/PagesWithoutLogin';
@@ -60,7 +59,7 @@ export const RouterInfo: RouterItem[] = [
   },
   {
     path: '/edit',
-    element: <Edit />,
+    element: <Add />,
     withAuth: true,
     label: 'edit',
   },

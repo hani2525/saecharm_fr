@@ -97,26 +97,6 @@
   }
 }
 
-.valueName {
-  color: #8d7b68;
-
-  @media #{$mobile} {
-    font-size: 12px;
-  }
-}
-
-.value {
-  margin-top: 7px;
-  padding: 7px 10px;
-  border: 3px solid #f9f5eb;
-  color: #7f8487;
-  border-radius: 5px;
-
-  @media #{$mobile} {
-    font-size: 10px;
-  }
-}
-
 .dateInfo {
   display: flex;
   gap: 10px;
@@ -126,9 +106,6 @@
   @media #{$mobile} {
     display: flex;
     align-items: center;
-  }
-  .infoBox {
-    width: 33%;
   }
 }
 
@@ -169,142 +146,9 @@
   align-items: center;
   padding: 20px 5px;
   border-bottom: 1px solid #e1d7c6;
-  .infoBox {
-    width: 33%;
-  }
 }
 
 .noteBox {
   padding: 20px 5px;
   border-bottom: 1px solid #e1d7c6;
-}
-
-.memoBox {
-  padding: 20px 5px;
-}
-
-.memoCard {
-  margin-top: 10px;
-  padding: 15px;
-  background-color: #e4dccf;
-  color: #7f8487;
-  border-radius: 15px;
-}
-
-.writerInfo {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  margin-bottom: 5px;
-  font-size: 13px;
-  color: #8b7e74;
-}
-
-.content {
-  font-size: 15px;
-}
-
-.memoInput {
-  display: flex;
-  gap: 5px;
-  align-items: center;
-  margin-top: 20px;
-}
-
-.input {
-  margin-top: 5px;
-  padding: 20px 10px;
-  border: 2px solid #e8d2a6;
-  width: 90%;
-  border-radius: 5px;
-
-  @media #{$mobile} {
-    width: 85%;
-    &::placeholder {
-      font-size: 8px;
-    }
-  }
-}
-
-.saveBtn {
-  padding: 15px 5px;
-  width: 10%;
-  background-color: #f9f5eb;
-  font-size: 14px;
-  color: #665a48;
-  text-align: center;
-  cursor: pointer;
-  border-radius: 20px;
-
-  @media #{$mobile} {
-    width: 25%;
-  }
-
-  &:hover {
-    background-color: #e8d2a6;
-  }
-}
-
-.modalBackground {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 99;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-
-  @media #{$mobile} {
-    height: 100vh;
-  }
-}
-
-.assignModal {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding: 40px 15px;
-  position: absolute;
-  top: 20%;
-  left: 25%;
-  z-index: 100;
-  width: 50%;
-  background-color: white;
-  border-radius: 20px;
-
-  @media #{$mobile} {
-    padding: 50px 5px;
-    width: 90%;
-    left: 5%;
-  }
-}
-
-.teamBtn {
-  padding: 20px;
-  background-color: #f9f5eb;
-  color: #8b7e74;
-  cursor: pointer;
-  border-radius: 20px;
-
-  &:hover {
-    background-color: #8d7b68;
-    color: white;
-  }
-
-  @media #{$mobile} {
-    padding: 10px;
-    font-size: 11px;
-  }
-}
-
-.exitBtn {
-  padding: 5px 10px;
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  background-color: #e1d7c6;
-  color: white;
-  cursor: pointer;
-  border-radius: 10px;
 }

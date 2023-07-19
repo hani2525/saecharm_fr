@@ -1,15 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ListType } from 'Pages/Main/type';
 import css from './Card.module.scss';
 
-interface Props {
-  id: number;
-  name: string;
-  responsibility: string;
-  firstDate: string;
-}
-
-const Card = ({ id, name, responsibility }: Props) => {
+const Card = ({ id, name, responsibility }: ListType) => {
   const navigate = useNavigate();
   const goDetail = () => {
     navigate(`/detail/${id}`);

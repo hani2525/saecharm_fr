@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { DatePicker } from 'react-rainbow-components';
 
-type DatePickProps = {
+interface DatePickProps {
   name: string;
   selectedDate?: string;
   onHandleDate: (name: string, date: Date) => void;
   disabled?: boolean;
-};
-// TODO: disabled 기능
+}
 
 const DatePick = ({
   name,
@@ -23,13 +22,13 @@ const DatePick = ({
   const containerStyles = {
     maxWidth: 500,
   };
-  const [date, setDate] = useState<any>(new Date());
+  const [date, setDate] = useState<Date | string>(new Date());
 
   useEffect(() => {
     setDate(selectedDate || new Date());
   }, [selectedDate]);
 
-  const handlePickDate = (value: any) => {
+  const handlePickDate = (value: Date) => {
     if (window.confirm('날짜를 선택하시겠습니까?')) {
       onHandleDate(name, value);
       setDate(value);

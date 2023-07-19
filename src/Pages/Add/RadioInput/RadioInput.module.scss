@@ -1,0 +1,7 @@
+@import 'styles/mediaQuery.scss';
+
+.labelName {
+  @media #{$mobile} {
+    zoom: 0.8;
+  }
+}

@@ -1,0 +1,25 @@
+@import 'styles/mediaQuery.scss';
+
+.infoBox {
+  width: 33%;
+}
+
+.valueName {
+  color: #8d7b68;
+
+  @media #{$mobile} {
+    font-size: 12px;
+  }
+}
+
+.value {
+  margin-top: 7px;
+  padding: 7px 10px;
+  border: 3px solid #f9f5eb;
+  color: #7f8487;
+  border-radius: 5px;
+
+  @media #{$mobile} {
+    font-size: 10px;
+  }
+}
