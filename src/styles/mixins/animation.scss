@@ -1,8 +1,0 @@
-@mixin animation($duration, $name...) {
-  -moz-animation-name: $name;
-  -webkit-animation-name: $name;
-  animation-name: $name;
-  -moz-animation-duration: $duration;
-  -webkit-animation-duration: $duration;
-  animation-duration: $duration;
-}

@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+# 새신자 관리 시스템
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## :: 기술
 
-## Available Scripts
+- Typescript
 
-In the project directory, you can run:
+- Sass & CSS Module
 
-### `npm start`
+<br />
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## :: Project Structure
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```
+.
+│
+├── src : 실질적은 프론트엔드 관련 코드는 모두 src 폴더에 포함
+│   │
+│   ├── Components : 전역으로 사용할 수 있는 컴포넌트
+│   │   ├── DatePick : Calendar에 사용되는 날짜 지정 컴포넌트
+│   │   ├── GNB : 공용 Global Navigation Bar 컴포넌트
+│   │   ├── Modal : 공용 Modal 컴포넌트
+│   │
+│   ├── Pages : 페이지 컴포넌트
+│   │   ├── Add : 새 신자 등록 및 수정 관련 컴포넌트
+│   │   ├── Detail : 새 신자 정보를 볼 수 있는 컴포넌트
+│   │   ├── Login : 로그인 컴포넌트
+│   │   ├── Main : 새 신자 정보를 한 눈에 볼 수 있는 대시보드 컴포넌트
+│   │   └── Table : 전체 신자 정보를 팀으로 볼 수 있는 컴포넌트
+│   │
+│   ├── Router : 라우팅 관리
+│   │   ├── Router : 실제 라우팅 처리를 하는 컴포넌트
+│   │   ├── RouterInfo : 라우팅할 컴포넌트의 정보를 담고있는 컴포넌트
+│   │
+│   ├── styles : 공통 스타일 속성 관리
+│   │   ├── common.scss : body, container 등 여러 페이지에서 공통으로 사용되는 스타일 관리
+│   │   ├── markdown.scss : 마크다운 형식 관련 스타일 관리
+│   │   ├── mediaQuery.scss : 미디어 쿼리 breakpoint 관련 스타일 관리
+│   │   ├── reset.scss : 리셋 관련 스타일 관리
+│   │
+│   └── utils : 전역에서 사용 할 수 있는 의존성이 없는 단순한 기능의 함수들을 모아놓은 폴더
+│       ├── hooks
+│       ├── styles : css style, className과 관련된 함수 모음
+├── .env
 
-### `npm test`
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## :: 실제 사이트
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[새로운 참청년, 새참] (https://saecharm.store)
