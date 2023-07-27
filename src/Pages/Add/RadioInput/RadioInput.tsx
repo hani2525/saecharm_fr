@@ -26,7 +26,7 @@ const RadioInput = ({
         name={name}
         id={id}
         value={value}
-        checked={checkedValue === value}
+        defaultChecked={checkedValue === value}
         onChange={onChange}
       />
     </label>

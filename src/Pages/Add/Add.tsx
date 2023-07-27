@@ -52,7 +52,12 @@ const Add = () => {
       body: JSON.stringify(newbieData),
     })
       .then(res => res.json())
-      .then(res => console.log(res));
+      .then(res => {
+        if (res.message === 'UPDATE_NEWBIE_SUCCESS') {
+          alert('업데이트 완료!');
+          navigate('/list/');
+        }
+      });
   };
 
   const handleAddBtn = () => {
@@ -68,6 +73,7 @@ const Add = () => {
       return;
     }
 
+    newbieData.is_guest = Number(localStorage.getItem('id')) === 11;
     fetch(`${BASE_URL}/newbies/detail`, {
       method: 'POST',
       headers: {
@@ -83,8 +89,6 @@ const Add = () => {
         }
       });
   };
-
-  console.log(newbieData);
 
   //TODO: 추후에 input type도 관리하기 (컴포넌트로 관리해서 한 번에 알아보기)
   return (

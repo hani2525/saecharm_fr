@@ -2,15 +2,14 @@ import React, { useEffect, useState } from 'react';
 import GNB from 'Components/GNB';
 import BASE_URL from 'config';
 import Area from './Area';
-import { List } from './Area/type';
 import { NewbiesDataType } from './type';
 import css from './Main.module.scss';
 
 const Main = () => {
   const [newbiesData, setNewbiesData] = useState<NewbiesDataType[]>();
-
+  const user_type = Number(localStorage.getItem('id')) === 11 ? 2 : 1;
   useEffect(() => {
-    fetch(`${BASE_URL}/newbies`)
+    fetch(`${BASE_URL}/newbies/${user_type}`)
       .then(res => res.json())
       .then(data => setNewbiesData(data.data));
   }, []);

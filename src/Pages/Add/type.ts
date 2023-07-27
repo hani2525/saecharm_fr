@@ -13,4 +13,5 @@ export type NewbieDataType = {
   description?: string;
   responsibility?: string;
   gender?: string;
+  is_guest?: boolean;
 };
