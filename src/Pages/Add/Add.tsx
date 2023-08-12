@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
 import { useLocation, useNavigate } from 'react-router-dom';
 import GNB from 'Components/GNB';
-import BASE_URL from 'config';
+import { addNewbie } from 'APIs/Add';
+import { editNewbie } from 'APIs/Edit';
 import Button from './Button';
 import DateInput from './DateInput';
 import RadioInput from './RadioInput';
@@ -42,22 +44,31 @@ const Add = () => {
     }));
   };
 
+  const addMutation = useMutation(addNewbie, {
+    onError: () => {
+      alert('다시 시도해주세요.');
+      return;
+    },
+    onSuccess: () => {
+      alert('성공적으로 등록되었습니다.');
+      navigate('/list/main');
+    },
+  });
+
+  const editMutaion = useMutation(editNewbie, {
+    onError: () => {
+      alert('다시 시도해주세요.');
+      return;
+    },
+    onSuccess: () => {
+      alert('성공적으로 변경되었습니다.');
+      navigate('/list/main');
+    },
+  });
+
   const handleEditBtn = () => {
     newbieData.id = state.id;
-    fetch(`${BASE_URL}/newbies/additional-info`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newbieData),
-    })
-      .then(res => res.json())
-      .then(res => {
-        if (res.message === 'UPDATE_NEWBIE_SUCCESS') {
-          alert('업데이트 완료!');
-          navigate('/list/');
-        }
-      });
+    editMutaion.mutate(newbieData);
   };
 
   const handleAddBtn = () => {
@@ -72,25 +83,10 @@ const Add = () => {
       alert('필수 사항을 꼭 기입해주세요.');
       return;
     }
-
     newbieData.is_guest = Number(localStorage.getItem('id')) === 11;
-    fetch(`${BASE_URL}/newbies/detail`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newbieData),
-    })
-      .then(res => res.json())
-      .then(res => {
-        if (res.message === 'CREATE_NEWBIE_SUCCESS') {
-          alert('성공적으로 새가족 등록 완성!');
-          navigate('/list/main');
-        }
-      });
+    addMutation.mutate(newbieData);
   };
 
-  //TODO: 추후에 input type도 관리하기 (컴포넌트로 관리해서 한 번에 알아보기)
   return (
     <>
       <GNB />

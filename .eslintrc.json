@@ -80,6 +80,11 @@
             "position": "before"
           },
           {
+            "pattern": "APIs/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
             "pattern": "Pages/**", // Pages는 내부 모듈 전에 위치
             "group": "internal",
             "position": "after"

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import BASE_URL from 'config';
 import { cn } from 'utils';
-import title from './sae_charm.png';
+import { checkUserAccount } from 'APIs/Login';
 import { UserInfoType } from './type';
 import css from './Login.module.scss';
 
@@ -34,32 +33,19 @@ const Login = () => {
     }
   };
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if (!userInfo?.account || !userInfo?.password) {
       alert('아이디 또는 비밀번호를 입력해주세요.');
       return;
     }
-    fetch(`${BASE_URL}/admin/signin`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        account: userInfo.account,
-        password: userInfo.password,
-      }),
-    })
-      .then(res => res.json())
-      .then(res => {
-        if (res.message === 'LOGIN_SUCCESS') {
-          localStorage.setItem('access_token', res.accessToken);
-          localStorage.setItem('name', res.name);
-          localStorage.setItem('id', res.id);
-          navigate('/list/main');
-        } else {
-          alert('아이디 또는 비밀번호를 확인해주세요.');
-        }
-      });
+    const isUser = checkUserAccount({
+      account: userInfo.account,
+      password: userInfo.password,
+    });
+
+    if (await isUser) {
+      navigate('/list/main');
+    }
   };
 
   return (

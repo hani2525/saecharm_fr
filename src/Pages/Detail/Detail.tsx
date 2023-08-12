@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import GNB from 'Components/GNB';
 import { useSwitchModal } from 'Components/Modal/Modal.hook';
-import BASE_URL from 'config';
 import { cn } from 'utils';
+import { getNewbieDetailData } from 'APIs/Detail';
 import AssignModal from './AssignModal';
 import AttendanceTable from './AttendanceTable';
 import InfoBox from './InfoBox';
 import MemoBox from './MemoBox';
-import { NewbieDataType } from './type';
 import css from './Detail.module.scss';
 
 const Detail = () => {
@@ -16,18 +16,15 @@ const Detail = () => {
   const params = useParams();
   const newbieId = Number(params.id);
   const { isOpenModal, switchModal } = useSwitchModal();
-  const [newbieData, setNewbieData] = useState<NewbieDataType>();
 
-  useEffect(() => {
-    fetch(`${BASE_URL}/newbies/detail/${newbieId}`)
-      .then(res => res.json())
-      .then(data => setNewbieData(data.data[0]));
-  }, []);
+  const { data } = useQuery(['newbieDetailData'], () =>
+    getNewbieDetailData(newbieId),
+  );
 
   const goToEdit = () => {
     navigate('/edit', {
       state: {
-        data: newbieData,
+        data: data,
         id: newbieId,
       },
     });
@@ -36,7 +33,7 @@ const Detail = () => {
   return (
     <>
       <GNB />
-      {newbieData && (
+      {data && (
         <div className={css.container}>
           <span className={css.title}>🐏 새가족 정보</span>
           <div className={css.detailInfo}>
@@ -47,19 +44,19 @@ const Detail = () => {
                 className={css.defaultImg}
               />
               <div className={css.personalInfo}>
-                <InfoBox valueName="이름" value={newbieData.name} />
-                <InfoBox valueName="연락처" value={newbieData.phone_number} />
-                <InfoBox valueName="주소" value={newbieData.address} />
+                <InfoBox valueName="이름" value={data.name} />
+                <InfoBox valueName="연락처" value={data.phone_number} />
+                <InfoBox valueName="주소" value={data.address} />
               </div>
             </div>
             <div className={css.dateInfo}>
               <InfoBox
                 valueName="등록일"
-                value={newbieData.first_visit.substr(0, 10)}
+                value={data.first_visit.substr(0, 10)}
               />
               <InfoBox
                 valueName="생년월일"
-                value={newbieData.birth_date.substr(0, 10)}
+                value={data.birth_date.substr(0, 10)}
               />
               <fieldset className={css.radioInfo}>
                 <span className={css.radioName}>세례 유무</span>
@@ -71,7 +68,7 @@ const Detail = () => {
                       name="baptism"
                       id="baptism"
                       value="true"
-                      checked={newbieData.is_baptized}
+                      checked={data.is_baptized}
                       disabled
                     />
                   </label>
@@ -82,7 +79,7 @@ const Detail = () => {
                       name="baptism"
                       id="baptism"
                       value="false"
-                      checked={!newbieData.is_baptized}
+                      checked={!data.is_baptized}
                       disabled
                     />
                   </label>
@@ -98,7 +95,7 @@ const Detail = () => {
                       name="gender"
                       id="gender"
                       value="true"
-                      checked={newbieData.gender === 'male'}
+                      checked={data.gender === 'male'}
                       disabled
                     />
                   </label>
@@ -109,7 +106,7 @@ const Detail = () => {
                       name="gender"
                       id="gender"
                       value="false"
-                      checked={newbieData.gender === 'female'}
+                      checked={data.gender === 'female'}
                       disabled
                     />
                   </label>
@@ -117,12 +114,12 @@ const Detail = () => {
               </fieldset>
             </div>
             <div className={css.additionalInfo}>
-              <InfoBox valueName="인도" value={newbieData.guide} />
-              <InfoBox valueName="직업" value={newbieData.job} />
-              <InfoBox valueName="담당목자" value={newbieData.responsibility} />
+              <InfoBox valueName="인도" value={data.guide} />
+              <InfoBox valueName="직업" value={data.job} />
+              <InfoBox valueName="담당목자" value={data.responsibility} />
             </div>
             <div className={css.noteBox}>
-              <InfoBox valueName="특이사항" value={newbieData.description} />
+              <InfoBox valueName="특이사항" value={data.description} />
             </div>
             <AttendanceTable newbieId={newbieId} />
             <MemoBox newbieId={newbieId} />
@@ -137,10 +134,10 @@ const Detail = () => {
           </div>
           {isOpenModal && (
             <AssignModal
-              fourth_class={newbieData.fourth_class}
-              name={newbieData.name}
-              gender={newbieData.gender}
-              birth_date={newbieData.birth_date}
+              fourth_class={data.fourth_class}
+              name={data.name}
+              gender={data.gender}
+              birth_date={data.birth_date}
               switchModal={switchModal}
             />
           )}

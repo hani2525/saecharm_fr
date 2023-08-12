@@ -1,20 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useQuery } from '@tanstack/react-query';
 import GNB from 'Components/GNB';
-import BASE_URL from 'config';
+import { getMembersbyTeam } from 'APIs/Team';
 import Village from './Village';
 import css from './Table.module.scss';
 
 const Table = () => {
-  //전체 목장 목록 가져오기
-  const [teamsByVillage, setTeamsByVillage] = useState({});
+  const { data } = useQuery(['membersData'], getMembersbyTeam);
+  const teamsArr = Object.entries(data);
 
-  useEffect(() => {
-    fetch(`${BASE_URL}/members`)
-      .then(res => res.json())
-      .then(data => setTeamsByVillage(data.data));
-  }, []);
-
-  const teamsArr = Object.entries(teamsByVillage);
   return (
     <>
       <GNB />

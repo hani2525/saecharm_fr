@@ -9,3 +9,11 @@ export type TeamType = {
   villlage_name: string;
   elder: string;
 };
+
+export type NewbieToMemberDataType = {
+  team_id: number;
+  name: string;
+  gender: string;
+  birth_year: number;
+  position: number;
+};
