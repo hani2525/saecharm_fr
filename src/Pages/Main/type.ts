@@ -1,4 +1,4 @@
-export type NewbiesDataType = {
+export type NewbieDataType = {
   id: number;
   step: number;
   list: ListType[];

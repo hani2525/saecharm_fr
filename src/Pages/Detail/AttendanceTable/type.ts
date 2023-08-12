@@ -5,3 +5,9 @@ export type AttendanceDataType = {
   thirdClass: string;
   fourthClass: string;
 };
+
+export type updatedAttendanceDataType = {
+  newbie_id: number;
+  class_name: string;
+  date: Date;
+};
