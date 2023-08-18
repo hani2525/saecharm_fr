@@ -31,13 +31,13 @@
 │   │   ├── Router : 실제 라우팅 처리를 하는 컴포넌트
 │   │   ├── RouterInfo : 라우팅할 컴포넌트의 정보를 담고있는 컴포넌트
 │   │
-│   ├── styles : 공통 스타일 속성 관리
+│   ├── Styles : 공통 스타일 속성 관리
 │   │   ├── common.scss : body, container 등 여러 페이지에서 공통으로 사용되는 스타일 관리
 │   │   ├── markdown.scss : 마크다운 형식 관련 스타일 관리
 │   │   ├── mediaQuery.scss : 미디어 쿼리 breakpoint 관련 스타일 관리
 │   │   ├── reset.scss : 리셋 관련 스타일 관리
 │   │
-│   └── utils : 전역에서 사용 할 수 있는 의존성이 없는 단순한 기능의 함수들을 모아놓은 폴더
+│   └── Utils : 전역에서 사용 할 수 있는 의존성이 없는 단순한 기능의 함수들을 모아놓은 폴더
 │       ├── hooks
 │       ├── styles : css style, className과 관련된 함수 모음
 ├── .env
