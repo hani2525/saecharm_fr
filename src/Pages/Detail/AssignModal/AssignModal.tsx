@@ -19,7 +19,10 @@ const AssignModal = ({
   birth_date,
   switchModal,
 }: Props) => {
-  const { data } = useQuery(['teamsData'], getTeamsData);
+  const { data: teamsData } = useQuery<TeamDataType[]>(
+    ['teamsData'],
+    getTeamsData,
+  );
 
   const assignMutation = useMutation(assignTeam, {
     onError: () => {
@@ -53,8 +56,8 @@ const AssignModal = ({
   return (
     <div className={css.modalBackground}>
       <div className={css.assignModal}>
-        {data &&
-          data.map((team: TeamDataType) => (
+        {teamsData &&
+          teamsData.map(team => (
             <>
               <div
                 className={css.teamBtn}

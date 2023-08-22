@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { createMemo, getMemosData } from 'APIs/Memo';
 import { MemoDataType } from './type';
 import css from './MemoBox.module.scss';
@@ -10,8 +10,8 @@ interface Props {
 
 const MemoBox = ({ newbieId }: Props) => {
   const memoInput = useRef<HTMLInputElement>(null);
-
-  const { data, refetch } = useQuery(['memosData'], () =>
+  const queryClient = useQueryClient();
+  const { data: memoData } = useQuery<MemoDataType[]>(['memosData'], () =>
     getMemosData(newbieId),
   );
 
@@ -21,10 +21,8 @@ const MemoBox = ({ newbieId }: Props) => {
       return;
     },
     onSuccess: () => {
+      queryClient.invalidateQueries(['memosData']);
       memoInput.current!.value = '';
-    },
-    onSettled: () => {
-      refetch();
     },
   });
 
@@ -48,8 +46,8 @@ const MemoBox = ({ newbieId }: Props) => {
     <div className={css.memoBox}>
       <span className={css.valueName}>메모</span>
       <div className={css.memoBoard}>
-        {data &&
-          data.map((memo: MemoDataType) => {
+        {memoData &&
+          memoData.map(memo => {
             return (
               <div className={css.memoCard} key={memo.content}>
                 <div className={css.writerInfo}>

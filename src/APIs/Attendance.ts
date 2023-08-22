@@ -1,5 +1,5 @@
 import BASE_URL from 'config';
-import { updatedAttendanceDataType } from 'Pages/Detail/AttendanceTable/type';
+import { UpdatedAttendanceDataType } from 'Pages/Detail/AttendanceTable/type';
 
 const getAttendanceData = async (newbieId: number) => {
   const data = await fetch(`${BASE_URL}/attendance/info/${newbieId}`).then(
@@ -9,7 +9,7 @@ const getAttendanceData = async (newbieId: number) => {
 };
 
 const updateAttandance = async (
-  updatedAttendanceData: updatedAttendanceDataType,
+  updatedAttendanceData: UpdatedAttendanceDataType,
 ) => {
   return await fetch(`${BASE_URL}/attendance`, {
     method: 'POST',

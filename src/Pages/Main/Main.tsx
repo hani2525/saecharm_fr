@@ -7,7 +7,10 @@ import { NewbieDataType } from './type';
 import css from './Main.module.scss';
 
 const Main = () => {
-  const { data } = useQuery(['newbiesData'], getNewbiesData);
+  const { data: newbiesData } = useQuery<NewbieDataType[]>(
+    ['newbiesData'],
+    getNewbiesData,
+  );
 
   return (
     <>
@@ -15,8 +18,8 @@ const Main = () => {
       <div className={css.container}>
         <div className={css.title}>📋 새가족 현황</div>
         <div className={css.boardWrapper}>
-          {data &&
-            data.map((step: NewbieDataType) => {
+          {newbiesData &&
+            newbiesData.map((step: NewbieDataType) => {
               return <Area list={step.list} step={step.step} key={step.id} />;
             })}
         </div>
