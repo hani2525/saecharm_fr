@@ -2,9 +2,9 @@
 
 ## :: 기술
 
-- Typescript
-
+- Typescript | React.js | React-query
 - Sass & CSS Module
+- DatePick Library
 
 <br />
 
@@ -16,7 +16,7 @@
 ├── src : 실질적은 프론트엔드 관련 코드는 모두 src 폴더에 포함
 │   │
 │   ├── Components : 전역으로 사용할 수 있는 컴포넌트
-│   │   ├── DatePick : Calendar에 사용되는 날짜 지정 컴포넌트
+│   │   ├── DatePick : Calendar에 사용되는 날짜 지정 라이브러리를 사용할 수 있는 컴포넌트
 │   │   ├── GNB : 공용 Global Navigation Bar 컴포넌트
 │   │   ├── Modal : 공용 Modal 컴포넌트
 │   │
