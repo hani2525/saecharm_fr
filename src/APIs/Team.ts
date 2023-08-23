@@ -16,9 +16,9 @@ const assignTeam = async (newbieToMemberData: NewbieToMemberDataType) => {
   }).then(res => res.json());
 };
 
-const getMembersbyTeam = async () => {
+const getMembersByVillage = async () => {
   const data = await fetch(`${BASE_URL}/members`).then(res => res.json());
   return data.data;
 };
 
-export { getTeamsData, assignTeam, getMembersbyTeam };
+export { getTeamsData, assignTeam, getMembersByVillage };

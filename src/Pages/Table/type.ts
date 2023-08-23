@@ -1,25 +1,24 @@
-export type MemberType = {
+export type VillageDataType = {
+  team_id: number;
+  team_data: MemberDataType[];
+};
+
+export type TableDataType = {
+  village_id: number;
+  village_data: VillageDataType[];
+};
+
+export type MemberDataType = {
   team_id: number;
   team_name: string;
-  name: string;
-  gender: string;
-  birth_year: number;
-  position: number;
   village_id: number;
-  villlage_name: string;
+  village_name: string;
+  name: string;
+  position: number;
+  birth_year: number;
   elder: string;
+  gender: string;
 };
-
-export type MemberTypeObj = {
-  villageNum: string;
-  memberTypeObj: { teamNum: string; member: MemberType[] };
-};
-
-export type MemberTypeArr = MemberTypeObj[];
-
-//['1', [{}, {}, {}]]
-
-export type tmpTypeArr = [string, MemberType];
 
 export type NewbieToMemberDataType = {
   team_id: number;
