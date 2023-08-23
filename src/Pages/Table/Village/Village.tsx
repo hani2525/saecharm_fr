@@ -1,26 +1,25 @@
 import React from 'react';
 import Team from '../Team';
-import { TeamType } from '../type';
+import { VillageDataType } from '../type';
 import css from './Village.module.scss';
 
 interface Props {
-  teams: string[] | TeamType[];
+  villageNumber: number;
+  villageData: VillageDataType[];
 }
 
-const Village = ({ teams }: any) => {
-  const villageNumber = Number(teams[0]);
-  const teamArr = Object.entries(teams[1]);
-
+const Village = ({ villageNumber, villageData }: Props) => {
   return (
     <>
       <div className={css.container}>
-        <div className={css.info}>
-          <span className={css.viilageNumber}>{villageNumber}마을</span>
-          {/* <span className={css.elder}> </span> */}
-        </div>
+        <div className={css.info}>{villageNumber} 마을</div>
         <div className={css.pastureWrapper}>
-          {teamArr.map(team => (
-            <Team key={team[0]} team={team} />
+          {villageData.map(team => (
+            <Team
+              key={team.team_id}
+              teamNumber={team.team_id}
+              teamData={team.team_data}
+            />
           ))}
         </div>
       </div>

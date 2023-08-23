@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 export const useSwitchModal = () => {
   const [isOpenModal, setIsOpenModal] = React.useState(false);
@@ -7,7 +7,7 @@ export const useSwitchModal = () => {
     setIsOpenModal(prev => !prev);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     const closeModal = (e: KeyboardEvent) => {
       if (e.code === 'Escape') {
         setIsOpenModal(false);

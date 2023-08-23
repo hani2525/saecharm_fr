@@ -9,6 +9,7 @@ import AssignModal from './AssignModal';
 import AttendanceTable from './AttendanceTable';
 import InfoBox from './InfoBox';
 import MemoBox from './MemoBox';
+import { NewbieDataType } from './type';
 import css from './Detail.module.scss';
 
 const Detail = () => {
@@ -17,14 +18,15 @@ const Detail = () => {
   const newbieId = Number(params.id);
   const { isOpenModal, switchModal } = useSwitchModal();
 
-  const { data } = useQuery(['newbieDetailData'], () =>
-    getNewbieDetailData(newbieId),
+  const { data: newbieDetailData } = useQuery<NewbieDataType>(
+    ['newbieDetailData'],
+    () => getNewbieDetailData(newbieId),
   );
 
   const goToEdit = () => {
     navigate('/edit', {
       state: {
-        data: data,
+        data: newbieDetailData,
         id: newbieId,
       },
     });
@@ -33,7 +35,7 @@ const Detail = () => {
   return (
     <>
       <GNB />
-      {data && (
+      {newbieDetailData && (
         <div className={css.container}>
           <span className={css.title}>🐏 새가족 정보</span>
           <div className={css.detailInfo}>
@@ -44,19 +46,22 @@ const Detail = () => {
                 className={css.defaultImg}
               />
               <div className={css.personalInfo}>
-                <InfoBox valueName="이름" value={data.name} />
-                <InfoBox valueName="연락처" value={data.phone_number} />
-                <InfoBox valueName="주소" value={data.address} />
+                <InfoBox valueName="이름" value={newbieDetailData.name} />
+                <InfoBox
+                  valueName="연락처"
+                  value={newbieDetailData.phone_number}
+                />
+                <InfoBox valueName="주소" value={newbieDetailData.address} />
               </div>
             </div>
             <div className={css.dateInfo}>
               <InfoBox
                 valueName="등록일"
-                value={data.first_visit.substr(0, 10)}
+                value={newbieDetailData.first_visit.substr(0, 10)}
               />
               <InfoBox
                 valueName="생년월일"
-                value={data.birth_date.substr(0, 10)}
+                value={newbieDetailData.birth_date.substr(0, 10)}
               />
               <fieldset className={css.radioInfo}>
                 <span className={css.radioName}>세례 유무</span>
@@ -68,7 +73,7 @@ const Detail = () => {
                       name="baptism"
                       id="baptism"
                       value="true"
-                      checked={data.is_baptized}
+                      checked={newbieDetailData.is_baptized}
                       disabled
                     />
                   </label>
@@ -79,7 +84,7 @@ const Detail = () => {
                       name="baptism"
                       id="baptism"
                       value="false"
-                      checked={!data.is_baptized}
+                      checked={!newbieDetailData.is_baptized}
                       disabled
                     />
                   </label>
@@ -95,7 +100,7 @@ const Detail = () => {
                       name="gender"
                       id="gender"
                       value="true"
-                      checked={data.gender === 'male'}
+                      checked={newbieDetailData.gender === 'male'}
                       disabled
                     />
                   </label>
@@ -106,7 +111,7 @@ const Detail = () => {
                       name="gender"
                       id="gender"
                       value="false"
-                      checked={data.gender === 'female'}
+                      checked={newbieDetailData.gender === 'female'}
                       disabled
                     />
                   </label>
@@ -114,12 +119,18 @@ const Detail = () => {
               </fieldset>
             </div>
             <div className={css.additionalInfo}>
-              <InfoBox valueName="인도" value={data.guide} />
-              <InfoBox valueName="직업" value={data.job} />
-              <InfoBox valueName="담당목자" value={data.responsibility} />
+              <InfoBox valueName="인도" value={newbieDetailData.guide} />
+              <InfoBox valueName="직업" value={newbieDetailData.job} />
+              <InfoBox
+                valueName="담당목자"
+                value={newbieDetailData.responsibility}
+              />
             </div>
             <div className={css.noteBox}>
-              <InfoBox valueName="특이사항" value={data.description} />
+              <InfoBox
+                valueName="특이사항"
+                value={newbieDetailData.description}
+              />
             </div>
             <AttendanceTable newbieId={newbieId} />
             <MemoBox newbieId={newbieId} />
@@ -134,10 +145,10 @@ const Detail = () => {
           </div>
           {isOpenModal && (
             <AssignModal
-              fourth_class={data.fourth_class}
-              name={data.name}
-              gender={data.gender}
-              birth_date={data.birth_date}
+              fourth_class={newbieDetailData.fourth_class}
+              name={newbieDetailData.name}
+              gender={newbieDetailData.gender}
+              birth_date={newbieDetailData.birth_date}
               switchModal={switchModal}
             />
           )}

@@ -6,7 +6,7 @@ export type AttendanceDataType = {
   fourthClass: string;
 };
 
-export type updatedAttendanceDataType = {
+export type UpdatedAttendanceDataType = {
   newbie_id: number;
   class_name: string;
   date: Date;

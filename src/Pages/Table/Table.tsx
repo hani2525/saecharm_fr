@@ -1,13 +1,16 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import GNB from 'Components/GNB';
-import { getMembersbyTeam } from 'APIs/Team';
+import { getMembersByVillage } from 'APIs/Team';
+import { TableDataType } from './type';
 import Village from './Village';
 import css from './Table.module.scss';
 
 const Table = () => {
-  const { data } = useQuery(['membersData'], getMembersbyTeam);
-  const teamsArr = Object.entries(data);
+  const { data: villageData } = useQuery<TableDataType[]>(
+    ['villageData'],
+    getMembersByVillage,
+  );
 
   return (
     <>
@@ -15,9 +18,14 @@ const Table = () => {
       <div className={css.container}>
         <div className={css.title}>💒 목장 편성표</div>
         <div className={css.boardWrapper}>
-          {teamsArr.map(teams => (
-            <Village key={teams[0]} teams={teams} />
-          ))}
+          {villageData &&
+            villageData.map(village => (
+              <Village
+                key={village.village_id}
+                villageNumber={village.village_id}
+                villageData={village.village_data}
+              />
+            ))}
         </div>
       </div>
     </>

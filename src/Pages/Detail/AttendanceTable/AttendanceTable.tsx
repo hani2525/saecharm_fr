@@ -1,8 +1,9 @@
 import React from 'react';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import DatePick from 'Components/DatePick';
 import { cn } from 'utils';
 import { getAttendanceData, updateAttandance } from 'APIs/Attendance';
+import { AttendanceDataType } from './type';
 import css from './AttendanceTable.module.scss';
 
 type AttendanceTableProps = {
@@ -10,16 +11,16 @@ type AttendanceTableProps = {
 };
 
 const AttendanceTable = ({ newbieId }: AttendanceTableProps) => {
-  const { data, refetch } = useQuery(['data'], () =>
-    getAttendanceData(newbieId),
+  const queryClient = useQueryClient();
+  const { data: attendanceData } = useQuery<AttendanceDataType>(
+    ['attendanceData'],
+    () => getAttendanceData(newbieId),
   );
   const updateAttendanceMutation = useMutation(updateAttandance, {
+    onSuccess: () => queryClient.invalidateQueries(['attendanceData']),
     onError: () => {
       alert('다시 시도해주세요.');
       return;
-    },
-    onSettled: () => {
-      refetch();
     },
   });
   const handleDate = async (name: string, date: Date) => {
@@ -38,7 +39,7 @@ const AttendanceTable = ({ newbieId }: AttendanceTableProps) => {
           <DatePick
             onHandleDate={handleDate}
             name={'orientation'}
-            selectedDate={data?.orientation}
+            selectedDate={attendanceData?.orientation}
           />
         </label>
         <label className={cn(css.label, css.dateLabel)}>
@@ -46,8 +47,8 @@ const AttendanceTable = ({ newbieId }: AttendanceTableProps) => {
           <DatePick
             onHandleDate={handleDate}
             name={'first_class'}
-            selectedDate={data?.firstClass}
-            disabled={!data?.orientation}
+            selectedDate={attendanceData?.firstClass}
+            disabled={!attendanceData?.orientation}
           />
         </label>
         <label className={cn(css.label, css.dateLabel)}>
@@ -55,8 +56,8 @@ const AttendanceTable = ({ newbieId }: AttendanceTableProps) => {
           <DatePick
             onHandleDate={handleDate}
             name={'second_class'}
-            selectedDate={data?.firstClass}
-            disabled={!data?.firstClass}
+            selectedDate={attendanceData?.firstClass}
+            disabled={!attendanceData?.firstClass}
           />
         </label>
         <label className={cn(css.label, css.dateLabel)}>
@@ -64,8 +65,8 @@ const AttendanceTable = ({ newbieId }: AttendanceTableProps) => {
           <DatePick
             onHandleDate={handleDate}
             name={'third_class'}
-            selectedDate={data?.thirdClass}
-            disabled={!data?.secondClass}
+            selectedDate={attendanceData?.thirdClass}
+            disabled={!attendanceData?.secondClass}
           />
         </label>
         <label className={cn(css.label, css.dateLabel)}>
@@ -73,8 +74,8 @@ const AttendanceTable = ({ newbieId }: AttendanceTableProps) => {
           <DatePick
             onHandleDate={handleDate}
             name={'fourth_class'}
-            selectedDate={data?.fourthClass}
-            disabled={!data?.thirdClass}
+            selectedDate={attendanceData?.fourthClass}
+            disabled={!attendanceData?.thirdClass}
           />
         </label>
       </div>
